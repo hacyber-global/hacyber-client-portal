@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacyber Global Tech | Client Control & Payment System</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #111827;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border: #1f2937;
+            --success: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+            text-align: center;
+        }
+
+        p.subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            background-color: #030712;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 8px;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .payment-methods {
+            background-color: #030712;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+        }
+
+        .payment-methods ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .payment-methods li {
+            margin-bottom: 12px;
+            color: var(--text-muted);
+        }
+
+        .payment-methods strong {
+            color: var(--text-main);
+        }
+
+        .payment-methods a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .payment-methods a:hover {
+            text-decoration: underline;
+        }
+
+        .copy-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .copy-row code {
+            flex: 1;
+            font-size: 0.75rem;
+            word-break: break-all;
+            color: var(--accent);
+            background: #0b0f19;
+            padding: 6px 8px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .copy-btn {
+            background: #1f2937;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: auto;
+            margin-top: 0;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #374151;
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Client Control System</h2>
+        <p class="subtitle">Hacyber Global Tech Intake Portal</p>
+        
+        <div class="section-title">3. 💵 Secure Payment Methods</div>
+        <div class="payment-methods">
+            <ul>
+                <li><strong>Zelle Payee Routing:</strong><br>
+                    • Payee Name: Joshua<br>
+                    • Zelle Address: 
+                    <div class="copy-row">
+                        <code id="zelleText">zelle@hacyberglobal.dpdns.org</code>
+                        <button type="button" class="copy-btn" onclick="copyText('zelle@hacyberglobal.dpdns.org', this)">Copy</button>
+                    </div>
+                </li>
+                <li><strong>PayPal Direct Checkout:</strong><br>
+                    • Invoice Link: <a href="https://paypal.me/hacyber-global/130" target="_blank">paypal.me/hacyber-global/130</a>
+                </li>
+                <li><strong>Bitcoin (BTC) Crypto Wallet:</strong><br>
+                    • BTC Address:
+                    <div class="copy-row">
+                        <code id="btcText">3QJ8yE7wU1fKANf5sWpDHezB3P4Jp8YgD</code>
+                        <button type="button" class="copy-btn" onclick="copyText('3QJ8yE7wU1fKANf5sWpDHezB3P4Jp8YgD', this)">Copy</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-title">Submit Lead & Funding Ref</div>
+        <form id="leadForm">
+            <div class="form-group">
+                <label for="nameInput">Full Name</label>
+                <input type="text" id="nameInput" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="emailInput">Email Address</label>
+                <input type="email" id="emailInput" placeholder="name@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="methodInput">Payment Method Used</label>
+                <select id="methodInput">
+                    <option value="Zelle">Zelle</option>
+                    <option value="PayPal">PayPal</option>
+                    <option value="Bitcoin">Bitcoin (BTC)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="detailsInput">Project Details / Transaction Hash</label>
+                <textarea id="detailsInput" placeholder="Describe scope or paste payment reference/hash..." required></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">Submit Lead</button>
+        </form>
+
+        <div class="footer-note">
+            Protected by Hacyber Systems &bull; Direct Telegram Integration
+        </div>
+    </div>
+
+    <script>
+        function copyText(text, btnElement) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btnElement.textContent;
+                btnElement.textContent = 'Copied!';
+                btnElement.style.backgroundColor = '#10b981';
+                btnElement.style.color = '#fff';
+                setTimeout(() => {
+                    btnElement.textContent = originalText;
+                    btnElement.style.backgroundColor = '';
+                    btnElement.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                alert('Failed to copy to clipboard.');
+            });
+        }
+
+        document.getElementById('leadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+
+            const leadData = {
+                name: document.getElementById('nameInput').value,
+                email: document.getElementById('emailInput').value,
+                details: `Payment via: ${document.getElementById('methodInput').value} | Notes: ${document.getElementById('detailsInput').value}`
+            };
+
+            try {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbxVuERLLJW457OrNBRfklXT59WJGi5ym61fjNuQx5smrRqtq3VM1zGoGwZKYX04sw1a/exec', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(leadData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Lead successfully submitted and dispatched to your main Telegram chat!');
+                    document.getElementById('leadForm').reset();
+                } else {
+                    alert('Submission failed: ' + (result.error || 'Unknown error'));
+                }
+            } catch (err) {
+                console.error('Network error:', err);
+                alert('Connection error occurred while submitting lead.');
+            } finally {
+                submitBtn.textContent = 'Submit Lead';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
