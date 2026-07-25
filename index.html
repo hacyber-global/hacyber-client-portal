@@ -130,95 +130,81 @@
             box-shadow: 0 6px 22px rgba(59, 130, 246, 0.5);
         }
 
-        .payment-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            margin-bottom: 28px;
-        }
-
-        .pay-card {
-            background: rgba(11, 15, 25, 0.55);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .pay-card::before {
-            content: '';
-            position: absolute;
+        /* Modal Overlay for Payment Channel Popup */
+        .modal-overlay {
+            display: none;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.03), transparent 60%);
-            pointer-events: none;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        .pay-card.lead-bank { 
-            border-left: 4px solid #10b981; 
-            box-shadow: inset 0 0 20px rgba(16, 185, 129, 0.03), 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        .pay-card.lead-bank:hover { 
-            border-color: rgba(16, 185, 129, 0.4);
-            box-shadow: inset 0 0 25px rgba(16, 185, 129, 0.08), 0 8px 30px rgba(16, 185, 129, 0.15);
-        }
-
-        .pay-card.usdt { 
-            border-left: 4px solid #ef4444; 
-            box-shadow: inset 0 0 20px rgba(239, 68, 68, 0.03), 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        .pay-card.usdt:hover { 
-            border-color: rgba(239, 68, 68, 0.4);
-            box-shadow: inset 0 0 25px rgba(239, 68, 68, 0.08), 0 8px 30px rgba(239, 68, 68, 0.15);
+        .modal-content {
+            width: 100%;
+            max-width: 580px;
+            background-color: rgba(17, 24, 39, 0.95);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
-        .pay-card.btc { 
-            border-left: 4px solid #f59e0b; 
-            box-shadow: inset 0 0 20px rgba(245, 158, 11, 0.03), 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        .pay-card.btc:hover { 
-            border-color: rgba(245, 158, 11, 0.4);
-            box-shadow: inset 0 0 25px rgba(245, 158, 11, 0.08), 0 8px 30px rgba(245, 158, 11, 0.15);
+        .payment-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 20px;
         }
 
-        .pay-card.eth { 
-            border-left: 4px solid #6366f1; 
-            box-shadow: inset 0 0 20px rgba(99, 102, 241, 0.03), 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        .pay-card.eth:hover { 
-            border-color: rgba(99, 102, 241, 0.4);
-            box-shadow: inset 0 0 25px rgba(99, 102, 241, 0.08), 0 8px 30px rgba(99, 102, 241, 0.15);
+        .pay-card {
+            background: rgba(11, 15, 25, 0.75);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
 
-        .pay-card.paypal { 
-            border-left: 4px solid #3b82f6; 
-            box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.03), 0 4px 20px rgba(0, 0, 0, 0.3);
+        .pay-card:hover {
+            border-color: var(--accent);
+            background: rgba(17, 24, 39, 0.9);
         }
-        .pay-card.paypal:hover { 
-            border-color: rgba(59, 130, 246, 0.4);
-            box-shadow: inset 0 0 25px rgba(59, 130, 246, 0.08), 0 8px 30px rgba(59, 130, 246, 0.15);
+
+        .pay-card.selected {
+            border-color: var(--success);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
         }
+
+        .pay-card.lead-bank { border-left: 4px solid #10b981; }
+        .pay-card.usdt { border-left: 4px solid #ef4444; }
+        .pay-card.btc { border-left: 4px solid #f59e0b; }
+        .pay-card.eth { border-left: 4px solid #6366f1; }
+        .pay-card.paypal { border-left: 4px solid #3b82f6; }
 
         .pay-header {
             font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 12px;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            letter-spacing: 0.3px;
         }
 
         .pay-details {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         .pay-details span {
@@ -230,17 +216,17 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .copy-row code {
             flex: 1;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             word-break: break-all;
             color: var(--text-main);
             background: rgba(3, 7, 18, 0.85);
-            padding: 8px 10px;
-            border-radius: 8px;
+            padding: 6px 8px;
+            border-radius: 6px;
             border: 1px solid var(--border);
         }
 
@@ -248,17 +234,17 @@
             background: rgba(31, 41, 55, 0.75);
             color: var(--text-main);
             border: 1px solid var(--border);
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.75rem;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
         }
 
-        .copy-btn:hover {
-            background: rgba(55, 65, 81, 0.9);
-            border-color: rgba(255, 255, 255, 0.2);
+        .receipt-section {
+            margin-top: 20px;
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
         }
 
         .footer-note {
@@ -276,67 +262,6 @@
         <h2>Hacyber Global Tech</h2>
         <p class="subtitle">Enterprise Client Onboarding & Secure Settlement Portal</p>
         
-        <div class="section-title">💵 Secure Deposit & Funding Channels</div>
-        
-        <div class="payment-grid">
-            <div class="pay-card lead-bank">
-                <div class="pay-header" style="color: #10b981;">LEAD BANK (ACH / Wire)</div>
-                <div class="pay-details">
-                    • Account Name: <span>Godfrey N Joshua</span><br>
-                    • Account Number: <span id="bankAcct">217061367039</span><br>
-                    • Routing Number: <span id="bankRouting">101019644</span><br>
-                    • Account Type: <span>Personal Checking</span>
-                    <div class="copy-row">
-                        <code id="bankText">Acct: 217061367039 | Routing: 101019644 | Name: Godfrey N Joshua</code>
-                        <button type="button" class="copy-btn" onclick="copyText('217061367039', this)">Copy Acct</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pay-card usdt">
-                <div class="pay-header" style="color: #ef4444;">TETHER USDT (TRC-20)</div>
-                <div class="pay-details">
-                    • Network: <span>Tron (TRC-20)</span><br>
-                    • Wallet Address:
-                    <div class="copy-row">
-                        <code id="usdtText">TBdEnSsWQwZAMKiRe54fPi3d45ajyoXqj6</code>
-                        <button type="button" class="copy-btn" onclick="copyText('TBdEnSsWQwZAMKiRe54fPi3d45ajyoXqj6', this)">Copy</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pay-card btc">
-                <div class="pay-header" style="color: #f59e0b;">BITCOIN (BTC)</div>
-                <div class="pay-details">
-                    • Network: <span>Bitcoin Blockchain</span><br>
-                    • Wallet Address:
-                    <div class="copy-row">
-                        <code id="btcText">35e99VQwk2dYUiBJeKe2wnd73drgFFacPp</code>
-                        <button type="button" class="copy-btn" onclick="copyText('35e99VQwk2dYUiBJeKe2wnd73drgFFacPp', this)">Copy</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pay-card eth">
-                <div class="pay-header" style="color: #6366f1;">ETHEREUM (ETH)</div>
-                <div class="pay-details">
-                    • Network: <span>Ethereum (ERC-20)</span><br>
-                    • Wallet Address:
-                    <div class="copy-row">
-                        <code id="ethText">0x575acfce162dc14fb2f6a7440c0da61c3d5f8a8f</code>
-                        <button type="button" class="copy-btn" onclick="copyText('0x575acfce162dc14fb2f6a7440c0da61c3d5f8a8f', this)">Copy</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pay-card paypal">
-                <div class="pay-header" style="color: #3b82f6;">PAYPAL DIRECT CHECKOUT</div>
-                <div class="pay-details">
-                    • Invoice Link: <a href="https://paypal.me/hacyber-global/130" target="_blank" style="color: #3b82f6; text-decoration: underline;">paypal.me/hacyber-global/130</a>
-                </div>
-            </div>
-        </div>
-
         <div class="section-title">💼 Professional Lead & Project Intake</div>
         <form id="leadForm">
             <div class="form-group">
@@ -350,22 +275,11 @@
             </div>
 
             <div class="form-group">
-                <label for="methodInput">Payment Method Used</label>
-                <select id="methodInput">
-                    <option value="Lead Bank (ACH/Wire)">Lead Bank (ACH / Wire)</option>
-                    <option value="Tether USDT (TRC-20)">Tether USDT (TRC-20)</option>
-                    <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
-                    <option value="Ethereum (ETH)">Ethereum (ETH)</option>
-                    <option value="PayPal">PayPal</option>
-                </select>
+                <label for="detailsInput">Project Scope / Requirements</label>
+                <textarea id="detailsInput" placeholder="Describe your project requirements or goals..." required></textarea>
             </div>
 
-            <div class="form-group">
-                <label for="detailsInput">Project Details / Transaction Hash</label>
-                <textarea id="detailsInput" placeholder="Describe scope or paste payment reference/hash..." required></textarea>
-            </div>
-
-            <button type="submit" id="submitBtn" class="submit-btn">Submit Lead</button>
+            <button type="button" id="proceedBtn" class="submit-btn">Proceed to Payment Selection</button>
         </form>
 
         <div class="footer-note">
@@ -373,35 +287,105 @@
         </div>
     </div>
 
+    <!-- Payment Channels Modal Popup -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <h2>Select Settlement Channel</h2>
+            <p class="subtitle">Choose your preferred payment method to receive details and submit proof.</p>
+            
+            <div class="payment-grid">
+                <div class="pay-card lead-bank" onclick="selectChannel('Lead Bank (ACH/Wire)', this)">
+                    <div class="pay-header" style="color: #10b981;">LEAD BANK (ACH / Wire) <span>Select</span></div>
+                    <div class="pay-details">
+                        • Account Name: <span>Godfrey N Joshua</span><br>
+                        • Account Number: <span>217061367039</span><br>
+                        • Routing Number: <span>101019644</span>
+                    </div>
+                </div>
+
+                <div class="pay-card usdt" onclick="selectChannel('Tether USDT (TRC-20)', this)">
+                    <div class="pay-header" style="color: #ef4444;">TETHER USDT (TRC-20) <span>Select</span></div>
+                    <div class="pay-details">
+                        • Network: <span>Tron (TRC-20)</span><br>
+                        • Address: <span>TBdEnSsWQwZAMKiRe54fPi3d45ajyoXqj6</span>
+                    </div>
+                </div>
+
+                <div class="pay-card btc" onclick="selectChannel('Bitcoin (BTC)', this)">
+                    <div class="pay-header" style="color: #f59e0b;">BITCOIN (BTC) <span>Select</span></div>
+                    <div class="pay-details">
+                        • Network: <span>Bitcoin Blockchain</span><br>
+                        • Address: <span>35e99VQwk2dYUiBJeKe2wnd73drgFFacPp</span>
+                    </div>
+                </div>
+
+                <div class="pay-card eth" onclick="selectChannel('Ethereum (ETH)', this)">
+                    <div class="pay-header" style="color: #6366f1;">ETHEREUM (ETH) <span>Select</span></div>
+                    <div class="pay-details">
+                        • Network: <span>Ethereum (ERC-20)</span><br>
+                        • Address: <span>0x575acfce162dc14fb2f6a7440c0da61c3d5f8a8f</span>
+                    </div>
+                </div>
+
+                <div class="pay-card paypal" onclick="selectChannel('PayPal', this)">
+                    <div class="pay-header" style="color: #3b82f6;">PAYPAL DIRECT CHECKOUT <span>Select</span></div>
+                    <div class="pay-details">
+                        • Link: <span>paypal.me/hacyber-global/130</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="receipt-section">
+                <div class="form-group">
+                    <label for="receiptInput">Payment Receipt / Transaction Hash (Required)</label>
+                    <input type="text" id="receiptInput" placeholder="Paste transaction hash, receipt ID, or notes..." required>
+                </div>
+                <button type="button" id="finalSubmitBtn" class="submit-btn" style="background: linear-gradient(135deg, #10b981, #059669);" onclick="submitFinalLead()" disabled>Select Payment Method First</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function copyText(text, btnElement) {
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = btnElement.textContent;
-                btnElement.textContent = 'Copied!';
-                btnElement.style.backgroundColor = '#10b981';
-                btnElement.style.color = '#fff';
-                setTimeout(() => {
-                    btnElement.textContent = originalText;
-                    btnElement.style.backgroundColor = '';
-                    btnElement.style.color = '';
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-                alert('Failed to copy to clipboard.');
-            });
+        let selectedPaymentMethod = '';
+
+        document.getElementById('proceedBtn').addEventListener('click', () => {
+            const name = document.getElementById('nameInput').value.trim();
+            const email = document.getElementById('emailInput').value.trim();
+            const details = document.getElementById('detailsInput').value.trim();
+
+            if (!name || !email || !details) {
+                alert('Please complete all lead input fields before proceeding.');
+                return;
+            }
+
+            document.getElementById('paymentModal').style.display = 'flex';
+        });
+
+        function selectChannel(methodName, element) {
+            document.querySelectorAll('.pay-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedPaymentMethod = methodName;
+
+            const finalBtn = document.getElementById('finalSubmitBtn');
+            finalBtn.disabled = false;
+            finalBtn.textContent = `Submit Lead & Receipt (${methodName})`;
         }
 
-        document.getElementById('leadForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.textContent = 'Submitting...';
-            submitBtn.disabled = true;
+        async function submitFinalLead() {
+            const receipt = document.getElementById('receiptInput').value.trim();
+            if (!receipt) {
+                alert('Please provide your payment receipt or transaction reference before completing submission.');
+                return;
+            }
+
+            const finalBtn = document.getElementById('finalSubmitBtn');
+            finalBtn.textContent = 'Transmitting to Telegram...';
+            finalBtn.disabled = true;
 
             const leadData = {
                 name: document.getElementById('nameInput').value,
                 email: document.getElementById('emailInput').value,
-                details: `Payment via: ${document.getElementById('methodInput').value} | Notes: ${document.getElementById('detailsInput').value}`
+                details: `Project Scope: ${document.getElementById('detailsInput').value} | Selected Payment Method: ${selectedPaymentMethod} | Receipt/Hash: ${receipt}`
             };
 
             try {
@@ -414,19 +398,22 @@
                 const result = await response.json();
 
                 if (result.success) {
-                    alert('Lead successfully submitted and dispatched to your main Telegram chat!');
+                    alert('Lead, selected payment channel, and receipt successfully dispatched to Telegram!');
                     document.getElementById('leadForm').reset();
+                    document.getElementById('paymentModal').style.display = 'none';
+                    location.reload();
                 } else {
                     alert('Submission failed: ' + (result.error || 'Unknown error'));
+                    finalBtn.textContent = `Submit Lead & Receipt (${selectedPaymentMethod})`;
+                    finalBtn.disabled = false;
                 }
             } catch (err) {
                 console.error('Network error:', err);
-                alert('Connection error occurred while submitting lead.');
-            } finally {
-                submitBtn.textContent = 'Submit Lead';
-                submitBtn.disabled = false;
+                alert('Connection error occurred while submitting.');
+                finalBtn.textContent = `Submit Lead & Receipt (${selectedPaymentMethod})`;
+                finalBtn.disabled = false;
             }
-        });
+        }
     </script>
 </body>
 </html>
