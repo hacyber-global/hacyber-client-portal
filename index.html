@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacyber Global Tech | Client Control & Payment System</title>
+    <title>Hacyber Global Tech | Client Lead & Payment System</title>
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #111827;
+            --bg-color: #060913;
+            --card-bg: rgba(17, 24, 39, 0.65);
             --accent: #3b82f6;
             --accent-hover: #2563eb;
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
-            --border: #1f2937;
+            --border: rgba(255, 255, 255, 0.08);
             --success: #10b981;
         }
 
@@ -25,45 +25,55 @@
 
         body {
             background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.1) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 24px;
         }
 
         .container {
             width: 100%;
-            max-width: 520px;
+            max-width: 620px;
             background-color: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 36px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
         h2 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
+            font-size: 1.65rem;
+            margin-bottom: 6px;
             color: var(--text-main);
             text-align: center;
+            letter-spacing: -0.5px;
         }
 
         p.subtitle {
             font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             text-align: center;
         }
 
         .section-title {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             color: var(--text-main);
             border-bottom: 1px solid var(--border);
-            padding-bottom: 6px;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .form-group {
@@ -80,116 +90,185 @@
 
         input, textarea, select {
             width: 100%;
-            padding: 12px;
-            background-color: #030712;
+            padding: 12px 14px;
+            background-color: rgba(3, 7, 18, 0.75);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 10px;
             color: var(--text-main);
             font-size: 0.95rem;
-            transition: border-color 0.2s;
+            transition: all 0.3s ease;
         }
 
         input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
         }
 
         textarea {
             resize: vertical;
-            min-height: 80px;
+            min-height: 85px;
         }
 
-        button {
+        button.submit-btn {
             width: 100%;
-            padding: 12px;
-            background-color: var(--accent);
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
             color: #ffffff;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 8px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
         }
 
-        button:hover {
-            background-color: var(--accent-hover);
+        button.submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 22px rgba(59, 130, 246, 0.5);
         }
 
-        .payment-methods {
-            background-color: #030712;
+        /* Glowing Glassmorphism Payment Cards Grid */
+        .payment-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .pay-card {
+            background: rgba(11, 15, 25, 0.55);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 20px;
-            font-size: 0.85rem;
+            border-radius: 14px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .payment-methods ul {
-            list-style-type: none;
-            padding-left: 0;
+        .pay-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.03), transparent 60%);
+            pointer-events: none;
         }
 
-        .payment-methods li {
+        /* Dynamic Glowing Glass Card Accents */
+        .pay-card.lead-bank { 
+            border-left: 4px solid #10b981; 
+            box-shadow: inset 0 0 20px rgba(16, 185, 129, 0.03), 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .pay-card.lead-bank:hover { 
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: inset 0 0 25px rgba(16, 185, 129, 0.08), 0 8px 30px rgba(16, 185, 129, 0.15);
+        }
+
+        .pay-card.usdt { 
+            border-left: 4px solid #ef4444; 
+            box-shadow: inset 0 0 20px rgba(239, 68, 68, 0.03), 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .pay-card.usdt:hover { 
+            border-color: rgba(239, 68, 68, 0.4);
+            box-shadow: inset 0 0 25px rgba(239, 68, 68, 0.08), 0 8px 30px rgba(239, 68, 68, 0.15);
+        }
+
+        .pay-card.btc { 
+            border-left: 4px solid #f59e0b; 
+            box-shadow: inset 0 0 20px rgba(245, 158, 11, 0.03), 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .pay-card.btc:hover { 
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: inset 0 0 25px rgba(245, 158, 11, 0.08), 0 8px 30px rgba(245, 158, 11, 0.15);
+        }
+
+        .pay-card.eth { 
+            border-left: 4px solid #6366f1; 
+            box-shadow: inset 0 0 20px rgba(99, 102, 241, 0.03), 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .pay-card.eth:hover { 
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: inset 0 0 25px rgba(99, 102, 241, 0.08), 0 8px 30px rgba(99, 102, 241, 0.15);
+        }
+
+        .pay-card.paypal { 
+            border-left: 4px solid #3b82f6; 
+            box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.03), 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .pay-card.paypal:hover { 
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: inset 0 0 25px rgba(59, 130, 246, 0.08), 0 8px 30px rgba(59, 130, 246, 0.15);
+        }
+
+        .pay-header {
+            font-weight: 600;
+            font-size: 0.95rem;
             margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            letter-spacing: 0.3px;
+        }
+
+        .pay-details {
+            font-size: 0.85rem;
             color: var(--text-muted);
+            line-height: 1.7;
         }
 
-        .payment-methods strong {
+        .pay-details span {
             color: var(--text-main);
-        }
-
-        .payment-methods a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .payment-methods a:hover {
-            text-decoration: underline;
+            font-family: monospace;
         }
 
         .copy-row {
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-top: 4px;
+            margin-top: 10px;
         }
 
         .copy-row code {
             flex: 1;
             font-size: 0.75rem;
             word-break: break-all;
-            color: var(--accent);
-            background: #0b0f19;
-            padding: 6px 8px;
-            border-radius: 6px;
+            color: var(--text-main);
+            background: rgba(3, 7, 18, 0.85);
+            padding: 8px 10px;
+            border-radius: 8px;
             border: 1px solid var(--border);
         }
 
         .copy-btn {
-            background: #1f2937;
+            background: rgba(31, 41, 55, 0.75);
             color: var(--text-main);
             border: 1px solid var(--border);
-            padding: 6px 10px;
-            border-radius: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
             font-size: 0.75rem;
             font-weight: 600;
             cursor: pointer;
-            width: auto;
-            margin-top: 0;
-            transition: background 0.2s;
+            transition: all 0.2s;
         }
 
         .copy-btn:hover {
-            background: #374151;
+            background: rgba(55, 65, 81, 0.9);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .footer-note {
-            margin-top: 20px;
+            margin-top: 28px;
             text-align: center;
             font-size: 0.75rem;
             color: var(--text-muted);
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -199,28 +278,70 @@
         <h2>Client Control System</h2>
         <p class="subtitle">Hacyber Global Tech Intake Portal</p>
         
-        <div class="section-title">3. 💵 Secure Payment Methods</div>
-        <div class="payment-methods">
-            <ul>
-                <li><strong>Zelle Payee Routing:</strong><br>
-                    • Payee Name: Joshua<br>
-                    • Zelle Address: 
+        <div class="section-title">💵 Secure Deposit & Funding Channels</div>
+        
+        <div class="payment-grid">
+            <!-- 1. Lead Bank (ACH / Wire Details) -->
+            <div class="pay-card lead-bank">
+                <div class="pay-header" style="color: #10b981;">LEAD BANK (ACH / Wire)</div>
+                <div class="pay-details">
+                    • Account Name: <span>Godfrey N Joshua</span><br>
+                    • Account Number: <span id="bankAcct">217061367039</span><br>
+                    • Routing Number: <span id="bankRouting">101019644</span><br>
+                    • Account Type: <span>Personal Checking</span>
                     <div class="copy-row">
-                        <code id="zelleText">zelle@hacyberglobal.dpdns.org</code>
-                        <button type="button" class="copy-btn" onclick="copyText('zelle@hacyberglobal.dpdns.org', this)">Copy</button>
+                        <code id="bankText">Acct: 217061367039 | Routing: 101019644 | Name: Godfrey N Joshua</code>
+                        <button type="button" class="copy-btn" onclick="copyText('217061367039', this)">Copy Acct</button>
                     </div>
-                </li>
-                <li><strong>PayPal Direct Checkout:</strong><br>
-                    • Invoice Link: <a href="https://paypal.me/hacyber-global/130" target="_blank">paypal.me/hacyber-global/130</a>
-                </li>
-                <li><strong>Bitcoin (BTC) Crypto Wallet:</strong><br>
-                    • BTC Address:
+                </div>
+            </div>
+
+            <!-- 2. Tether USDT (TRC-20) -->
+            <div class="pay-card usdt">
+                <div class="pay-header" style="color: #ef4444;">TETHER USDT (TRC-20)</div>
+                <div class="pay-details">
+                    • Network: <span>Tron (TRC-20)</span><br>
+                    • Wallet Address:
                     <div class="copy-row">
-                        <code id="btcText">3QJ8yE7wU1fKANf5sWpDHezB3P4Jp8YgD</code>
-                        <button type="button" class="copy-btn" onclick="copyText('3QJ8yE7wU1fKANf5sWpDHezB3P4Jp8YgD', this)">Copy</button>
+                        <code id="usdtText">TBdEnSsWQwZAMKiRe54fPi3d45ajyoXqj6</code>
+                        <button type="button" class="copy-btn" onclick="copyText('TBdEnSsWQwZAMKiRe54fPi3d45ajyoXqj6', this)">Copy</button>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
+
+            <!-- 3. Bitcoin (BTC) -->
+            <div class="pay-card btc">
+                <div class="pay-header" style="color: #f59e0b;">BITCOIN (BTC)</div>
+                <div class="pay-details">
+                    • Network: <span>Bitcoin Blockchain</span><br>
+                    • Wallet Address:
+                    <div class="copy-row">
+                        <code id="btcText">35e99VQwk2dYUiBJeKe2wnd73drgFFacPp</code>
+                        <button type="button" class="copy-btn" onclick="copyText('35e99VQwk2dYUiBJeKe2wnd73drgFFacPp', this)">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Ethereum (ETH) -->
+            <div class="pay-card eth">
+                <div class="pay-header" style="color: #6366f1;">ETHEREUM (ETH)</div>
+                <div class="pay-details">
+                    • Network: <span>Ethereum (ERC-20)</span><br>
+                    • Wallet Address:
+                    <div class="copy-row">
+                        <code id="ethText">0x575acfce162dc14fb2f6a7440c0da61c3d5f8a8f</code>
+                        <button type="button" class="copy-btn" onclick="copyText('0x575acfce162dc14fb2f6a7440c0da61c3d5f8a8f', this)">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. PayPal Direct -->
+            <div class="pay-card paypal">
+                <div class="pay-header" style="color: #3b82f6;">PAYPAL DIRECT CHECKOUT</div>
+                <div class="pay-details">
+                    • Invoice Link: <a href="https://paypal.me/hacyber-global/130" target="_blank" style="color: #3b82f6; text-decoration: underline;">paypal.me/hacyber-global/130</a>
+                </div>
+            </div>
         </div>
 
         <div class="section-title">Submit Lead & Funding Ref</div>
@@ -238,9 +359,11 @@
             <div class="form-group">
                 <label for="methodInput">Payment Method Used</label>
                 <select id="methodInput">
-                    <option value="Zelle">Zelle</option>
+                    <option value="Lead Bank (ACH/Wire)">Lead Bank (ACH / Wire)</option>
+                    <option value="Tether USDT (TRC-20)">Tether USDT (TRC-20)</option>
+                    <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
+                    <option value="Ethereum (ETH)">Ethereum (ETH)</option>
                     <option value="PayPal">PayPal</option>
-                    <option value="Bitcoin">Bitcoin (BTC)</option>
                 </select>
             </div>
 
@@ -249,7 +372,7 @@
                 <textarea id="detailsInput" placeholder="Describe scope or paste payment reference/hash..." required></textarea>
             </div>
 
-            <button type="submit" id="submitBtn">Submit Lead</button>
+            <button type="submit" id="submitBtn" class="submit-btn">Submit Lead</button>
         </form>
 
         <div class="footer-note">
