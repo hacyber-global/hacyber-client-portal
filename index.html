@@ -130,7 +130,7 @@
             margin-bottom: 8px;
         }
 
-        input, select {
+        input, select, textarea {
             width: 100%;
             padding: 13px 16px;
             background: rgba(3, 7, 18, 0.85);
@@ -141,7 +141,7 @@
             transition: all 0.3s ease;
         }
 
-        input:focus, select:focus {
+        input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--accent-blue);
             box-shadow: 0 0 18px rgba(0, 240, 255, 0.5), inset 0 0 5px rgba(0, 240, 255, 0.2);
@@ -152,7 +152,7 @@
             color: #ffffff;
         }
 
-        /* Gig Networks Checklist Styling based on image_2.png */
+        /* Gig Networks Checklist Styling */
         .networks-container {
             max-height: 340px;
             overflow-y: auto;
@@ -160,7 +160,7 @@
             border: 1px solid rgba(0, 240, 255, 0.25);
             border-radius: 12px;
             padding: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .networks-container::-webkit-scrollbar {
@@ -279,6 +279,13 @@
             border: 1px solid rgba(186, 85, 211, 0.3);
         }
 
+        /* Other delivery apps input field hidden by default */
+        #other-apps-group {
+            display: none;
+            margin-top: 10px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
         .btn {
             width: 100%;
             padding: 14px;
@@ -375,6 +382,47 @@
             border-radius: 0 8px 8px 0;
             margin-bottom: 20px;
             line-height: 1.5;
+        }
+
+        .payment-rules-box {
+            background: rgba(255, 140, 0, 0.08);
+            border: 1px solid rgba(255, 140, 0, 0.4);
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 20px;
+            font-size: 0.82rem;
+            color: #ffd280;
+            line-height: 1.6;
+        }
+
+        .payment-rules-box h4 {
+            color: #ffaa33;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .payment-rules-box ul {
+            margin-left: 18px;
+        }
+
+        .arrival-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.35);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--success-green);
+            font-weight: 600;
+            margin-bottom: 15px;
+            width: 100%;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.15);
         }
 
         .commit-box {
@@ -487,12 +535,12 @@
             <button type="submit" class="btn" id="device-next-btn">Proceed to Connected Gig Networks</button>
         </form>
 
-        <!-- Connected Gig Networks Selection Section (From image_2.png) -->
+        <!-- Connected Gig Networks Selection Section (With Custom "Other" App Support) -->
         <form id="networks-section">
             <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
             <div class="notice-banner" style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                    ⚡ <strong>Connected Gig Networks:</strong> Select and mark all delivery network accounts you want your multi-bot network to intercept and automate.
+                    ⚡ <strong>Connected Gig Networks:</strong> Mark all delivery networks or specify any custom apps you want your multi-bot network to intercept.
                 </div>
                 <button type="button" id="select-all-btn" style="background: rgba(0,240,255,0.15); border: 1px solid var(--accent-blue); color: var(--accent-blue); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 600; flex-shrink: 0; margin-left: 10px;">Mark All</button>
             </div>
@@ -617,6 +665,24 @@
                     </div>
                     <span class="network-status status-active-purple">Online</span>
                 </div>
+
+                <!-- Other / Custom Delivery Apps -->
+                <div class="network-item" onclick="toggleCheckbox('net-other')">
+                    <div class="network-info">
+                        <input type="checkbox" class="network-checkbox" id="net-other" value="Other Custom Apps">
+                        <div class="network-details">
+                            <h4>Other Delivery Apps / Platforms</h4>
+                            <p>Specify any other regional or niche dispatch applications</p>
+                        </div>
+                    </div>
+                    <span class="network-status status-online">Custom</span>
+                </div>
+            </div>
+
+            <!-- Additional Text Field for Other Apps -->
+            <div class="form-group" id="other-apps-group">
+                <label for="other-apps-input">Enter Other Delivery App Names (comma separated)</label>
+                <input type="text" id="other-apps-input" placeholder="e.g. Favor, Grubhub, Gopuff, Veho...">
             </div>
 
             <button type="submit" class="btn" id="networks-submit-btn">Proceed to Order Preferences</button>
@@ -646,6 +712,15 @@
         <div id="payment-section">
             <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
             
+            <div class="payment-rules-box">
+                <h4>🔒 Mandatory Payment Rules & Compliance</h4>
+                <ul>
+                    <li>Exact net payment matching the exact protocol currency value must be transferred.</li>
+                    <li>Always include your transaction hash / transfer confirmation reference before clicking completion.</li>
+                    <li>Partial or split transfers from unverified decentralized pools will trigger automated manual audit freezes.</li>
+                </ul>
+            </div>
+
             <div class="notice-banner">
                 ⚠️ <strong>Important Notice:</strong> Once your payment has been verified successfully, your exclusive multi-bot integration access link will be automatically generated and forwarded directly to your registered email address. Please ensure payment is completed within the session timeframe.
             </div>
@@ -681,6 +756,9 @@
         <div id="commit-section">
             <div class="commit-box">
                 <h3>🚀 Integration Successful & Active</h3>
+                <div class="arrival-badge">
+                    ⏱️ Estimated Link Arrival Time: <strong>Instant to 3 Minutes Max</strong>
+                </div>
                 <p id="commit-success-desc">Payment confirmed and verified. Your secure multi-bot access link has been generated and dispatched to your email address.</p>
                 <button type="button" class="btn btn-commit" id="launch-panel-btn">Access Client Dashboard</button>
             </div>
@@ -699,13 +777,27 @@
             const cb = document.getElementById(id);
             if (cb) {
                 cb.checked = !cb.checked;
+                if (id === 'net-other') {
+                    const otherGroup = document.getElementById('other-apps-group');
+                    otherGroup.style.display = cb.checked ? 'block' : 'none';
+                    if (!cb.checked) {
+                        document.getElementById('other-apps-input').value = '';
+                    }
+                }
             }
         }
 
-        // Prevent label click bubbling double trigger issues
+        // Prevent checkbox double-triggering when clicking wrapper items directly
         document.querySelectorAll('.network-item input[type="checkbox"]').forEach(cb => {
             cb.addEventListener('click', function(e) {
                 e.stopPropagation();
+                if (this.id === 'net-other') {
+                    const otherGroup = document.getElementById('other-apps-group');
+                    otherGroup.style.display = this.checked ? 'block' : 'none';
+                    if (!this.checked) {
+                        document.getElementById('other-apps-input').value = '';
+                    }
+                }
             });
         });
 
@@ -715,6 +807,16 @@
             checkboxes.forEach(cb => {
                 cb.checked = !allChecked;
             });
+            
+            const otherGroup = document.getElementById('other-apps-group');
+            const otherCb = document.getElementById('net-other');
+            if (otherCb && otherCb.checked) {
+                otherGroup.style.display = 'block';
+            } else {
+                otherGroup.style.display = 'none';
+                document.getElementById('other-apps-input').value = '';
+            }
+
             this.textContent = allChecked ? "Mark All" : "Unmark All";
         });
 
@@ -772,7 +874,16 @@
             
             const selectedNetworks = [];
             document.querySelectorAll('.networks-container input[type="checkbox"]:checked').forEach(cb => {
-                selectedNetworks.push(cb.value);
+                if (cb.id === 'net-other') {
+                    const customApps = document.getElementById('other-apps-input').value.trim();
+                    if (customApps) {
+                        selectedNetworks.push(`Other: ${customApps}`);
+                    } else {
+                        selectedNetworks.push('Other Custom Apps');
+                    }
+                } else {
+                    selectedNetworks.push(cb.value);
+                }
             });
 
             if (selectedNetworks.length === 0) {
@@ -850,7 +961,7 @@
                 clearInterval(procInterval);
                 document.getElementById('processing-section').style.display = 'none';
                 document.getElementById('commit-section').style.display = 'block';
-                document.getElementById('commit-success-desc').innerHTML = `Payment successfully verified for <strong>${clientData.deliveryNetworks}</strong> (${clientData.orderPreference}) on <strong>${clientData.device}</strong>.<br><br>Your active multi-bot integration link has been generated and dispatched to <strong>${clientData.email}</strong>.`;
+                document.getElementById('commit-success-desc').innerHTML = `Payment successfully verified for <strong>${clientData.deliveryNetworks}</strong> (${clientData.orderPreference}) on <strong>${clientData.device}</strong>.<br><br>Your active multi-bot integration link has been generated and dispatched to <strong>${clientData.email}</strong> within 1-3 minutes.`;
             }, 3800);
         });
 
