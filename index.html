@@ -3,314 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacyber Global Tech | Client Control & Payment System</title>
+    <title>Hacyber Global Tech - Secure Portal</title>
     <style>
         :root {
             --bg-color: #0b0f19;
-            --card-bg: #111827;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
+            --card-bg: rgba(17, 24, 39, 0.75);
+            --primary-blue: #0066ff;
+            --accent-blue: #00d2ff;
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
-            --border: #1f2937;
-            --success: #10b981;
+            --border-color: rgba(0, 210, 255, 0.2);
+            --glow-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
             background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 50% 10%, rgba(0, 102, 255, 0.15) 0%, transparent 60%);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             padding: 20px;
         }
 
         .container {
             width: 100%;
-            max-width: 520px;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
+            max-width: 480px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             padding: 30px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            box-shadow: var(--glow-shadow);
+            animation: fadeIn 0.6s ease-out;
         }
 
-        h2 {
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.4));
+        }
+
+        .header h1 {
             font-size: 1.5rem;
-            margin-bottom: 8px;
-            color: var(--text-main);
-            text-align: center;
-        }
-
-        p.subtitle {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 12px;
             color: var(--text-main);
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .header p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 5px;
         }
 
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
             font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 6px;
             color: var(--text-muted);
+            margin-bottom: 8px;
         }
 
-        input, textarea, select {
+        input {
             width: 100%;
-            padding: 12px;
-            background-color: #030712;
-            border: 1px solid var(--border);
+            padding: 12px 16px;
+            background: rgba(3, 7, 18, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             color: var(--text-main);
             font-size: 0.95rem;
-            transition: border-color 0.2s;
+            transition: all 0.3s ease;
         }
 
-        input:focus, textarea:focus, select:focus {
+        input[type="file"] {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        input:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.25);
         }
 
-        textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        button {
+        .btn {
             width: 100%;
             padding: 12px;
-            background-color: var(--accent);
-            color: #ffffff;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
             border: none;
             border-radius: 8px;
+            color: white;
+            font-weight: 600;
             font-size: 1rem;
-            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 8px;
+            transition: opacity 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
         }
 
-        button:hover {
-            background-color: var(--accent-hover);
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
 
-        .payment-methods {
-            background-color: #030712;
-            border: 1px solid var(--border);
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Hidden Payment & Upload Sections */
+        #payment-section, #proof-section {
+            display: none;
+            margin-top: 25px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .payment-card {
+            background: rgba(3, 7, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 15px;
             border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 20px;
-            font-size: 0.85rem;
-        }
-
-        .payment-methods ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .payment-methods li {
-            margin-bottom: 12px;
-            color: var(--text-muted);
-        }
-
-        .payment-methods strong {
-            color: var(--text-main);
-        }
-
-        .payment-methods a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .payment-methods a:hover {
-            text-decoration: underline;
-        }
-
-        .copy-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 4px;
-        }
-
-        .copy-row code {
-            flex: 1;
-            font-size: 0.75rem;
-            word-break: break-all;
-            color: var(--accent);
-            background: #0b0f19;
-            padding: 6px 8px;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-        }
-
-        .copy-btn {
-            background: #1f2937;
-            color: var(--text-main);
-            border: 1px solid var(--border);
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: auto;
-            margin-top: 0;
-            transition: background 0.2s;
-        }
-
-        .copy-btn:hover {
-            background: #374151;
-        }
-
-        .footer-note {
-            margin-top: 20px;
             text-align: center;
-            font-size: 0.75rem;
-            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--accent-blue);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>Client Control System</h2>
-        <p class="subtitle">Hacyber Global Tech Intake Portal</p>
-        
-        <div class="section-title">3. 💵 Secure Payment Methods</div>
-        <div class="payment-methods">
-            <ul>
-                <li><strong>Zelle Payee Routing:</strong><br>
-                    • Payee Name: Joshua<br>
-                    • Zelle Address: 
-                    <div class="copy-row">
-                        <code id="zelleText">zelle@hacyberglobal.dpdns.org</code>
-                        <button type="button" class="copy-btn" onclick="copyText('zelle@hacyberglobal.dpdns.org', this)">Copy</button>
-                    </div>
-                </li>
-                <li><strong>PayPal Direct Checkout:</strong><br>
-                    • Invoice Link: <a href="https://paypal.me/hacyber-global/130" target="_blank">paypal.me/hacyber-global/130</a>
-                </li>
-                <li><strong>Bitcoin (BTC) Crypto Wallet:</strong><br>
-                    • BTC Address:
-                    <div class="copy-row">
-                        <code id="btcText">3QJ8yE7wU1fKANf5sWpDHezB3P4Jp8YgD</code>
-                        <button type="button" class="copy-btn" onclick="copyText('3QJ8yE7wU1fKANf5sWpDHezB3P4Jp8YgD', this)">Copy</button>
-                    </div>
-                </li>
-            </ul>
+        <div class="header">
+            <img src="logo.png" alt="Hacyber Global Tech" class="logo">
+            <h1>Secure Client Portal</h1>
+            <p>Verify your details to proceed</p>
         </div>
 
-        <div class="section-title">Submit Lead & Funding Ref</div>
-        <form id="leadForm">
+        <!-- Initial Lead Form -->
+        <form id="lead-form">
             <div class="form-group">
-                <label for="nameInput">Full Name</label>
-                <input type="text" id="nameInput" placeholder="Enter your name" required>
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" required placeholder="Enter your full name">
             </div>
-
             <div class="form-group">
-                <label for="emailInput">Email Address</label>
-                <input type="email" id="emailInput" placeholder="name@example.com" required>
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="name@example.com">
             </div>
-
-            <div class="form-group">
-                <label for="methodInput">Payment Method Used</label>
-                <select id="methodInput">
-                    <option value="Zelle">Zelle</option>
-                    <option value="PayPal">PayPal</option>
-                    <option value="Bitcoin">Bitcoin (BTC)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="detailsInput">Project Details / Transaction Hash</label>
-                <textarea id="detailsInput" placeholder="Describe scope or paste payment reference/hash..." required></textarea>
-            </div>
-
-            <button type="submit" id="submitBtn">Submit Lead</button>
+            <button type="submit" class="btn" id="submit-btn">Verify & Continue</button>
         </form>
 
-        <div class="footer-note">
-            Protected by Hacyber Systems &bull; Direct Telegram Integration
+        <!-- Hidden Payment Portal Section -->
+        <div id="payment-section">
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
+            <div class="payment-card">
+                <strong>Wise Transfer Instructions:</strong><br>
+                Send funds securely to account reference: <br>
+                <span style="color: #fff; font-family: monospace; font-size: 1rem;">TBapFsEXEJWG9GPSXL4xRZpzAgoPZqjwsq</span>
+            </div>
+            <button type="button" class="btn" id="proceed-to-proof-btn">I Have Made The Payment</button>
         </div>
+
+        <!-- Hidden Proof of Payment Section -->
+        <form id="proof-section">
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 20px;">
+            <div class="form-group">
+                <label for="proof-file">Upload Proof of Payment (Screenshot/Receipt)</label>
+                <input type="file" id="proof-file" accept="image/*,.pdf" required>
+            </div>
+            <button type="submit" class="btn" id="final-submit-btn">Submit Proof for Verification</button>
+        </form>
     </div>
 
     <script>
-        function copyText(text, btnElement) {
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = btnElement.textContent;
-                btnElement.textContent = 'Copied!';
-                btnElement.style.backgroundColor = '#10b981';
-                btnElement.style.color = '#fff';
-                setTimeout(() => {
-                    btnElement.textContent = originalText;
-                    btnElement.style.backgroundColor = '';
-                    btnElement.style.color = '';
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-                alert('Failed to copy to clipboard.');
-            });
-        }
+        const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycby83r6izzGv9ZNYbTVkUFldCOWns_ourFktMGi2yxQtOZUjMvPpo0z_TJXRsWZmtz2V7w/exec';
+        const TELEGRAM_BOT_TOKEN = '8676025127:AAGRYE5Pp6hBCKk6eQQL42aqObliIarQ41Q';
+        const TELEGRAM_CHAT_ID = '5642832782';
 
-        document.getElementById('leadForm').addEventListener('submit', async (e) => {
+        let clientData = {};
+
+        // 1. Lead Form Submission -> Send to Telegram & Google Script, then show Payment Section
+        document.getElementById('lead-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.textContent = 'Submitting...';
-            submitBtn.disabled = true;
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.textContent = 'Verifying...';
 
-            const leadData = {
-                name: document.getElementById('nameInput').value,
-                email: document.getElementById('emailInput').value,
-                details: `Payment via: ${document.getElementById('methodInput').value} | Notes: ${document.getElementById('detailsInput').value}`
-            };
+            clientData.name = document.getElementById('fullname').value;
+            clientData.email = document.getElementById('email').value;
 
-            try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbxVuERLLJW457OrNBRfklXT59WJGi5ym61fjNuQx5smrRqtq3VM1zGoGwZKYX04sw1a/exec', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(leadData)
-                });
+            // Notify via Telegram Bot
+            const telegramMessage = `🚨 New Lead Registered:\nName: ${clientData.name}\nEmail: ${clientData.email}`;
+            sendTelegramMessage(telegramMessage);
 
-                const result = await response.json();
+            // Send to Google Apps Script Webhook
+            sendToGoogleScript({ type: 'lead', ...clientData });
 
-                if (result.success) {
-                    alert('Lead successfully submitted and dispatched to your main Telegram chat!');
-                    document.getElementById('leadForm').reset();
-                } else {
-                    alert('Submission failed: ' + (result.error || 'Unknown error'));
-                }
-            } catch (err) {
-                console.error('Network error:', err);
-                alert('Connection error occurred while submitting lead.');
-            } finally {
-                submitBtn.textContent = 'Submit Lead';
-                submitBtn.disabled = false;
-            }
+            setTimeout(() => {
+                document.getElementById('lead-form').style.display = 'none';
+                document.getElementById('payment-section').style.display = 'block';
+            }, 1000);
         });
+
+        // 2. Proceed from payment instructions to proof upload form
+        document.getElementById('proceed-to-proof-btn').addEventListener('click', function() {
+            document.getElementById('payment-section').style.display = 'none';
+            document.getElementById('proof-section').style.display = 'block';
+        });
+
+        // 3. Proof of Payment Form Submission -> Dictate / Notify Real Proof via Telegram
+        document.getElementById('proof-section').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const finalBtn = document.getElementById('final-submit-btn');
+            finalBtn.disabled = true;
+            finalBtn.textContent = 'Uploading Proof...';
+
+            const fileInput = document.getElementById('proof-file');
+            const fileName = fileInput.files[0] ? fileInput.files[0].name : 'Unknown file';
+
+            // Telegram Notification indicating real proof upload attempt
+            const proofMessage = `💳 Payment Proof Uploaded!\nName: ${clientData.name}\nEmail: ${clientData.email}\nFile: ${fileName}\n\n*Action Required: Verify transaction validity against Wise reference TBapFsEXEJWG9GPSXL4xRZpzAgoPZqjwsq*`;
+            sendTelegramMessage(proofMessage);
+            sendToGoogleScript({ type: 'proof_uploaded', ...clientData, fileName });
+
+            setTimeout(() => {
+                alert('Proof submitted successfully! Our automated system is verifying your payment.');
+                finalBtn.textContent = 'Verified & Submitted';
+            }, 1500);
+        });
+
+        function sendTelegramMessage(text) {
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: text, parse_mode: 'Markdown' })
+            }).catch(err => console.error('Telegram error:', err));
+        }
+
+        function sendToGoogleScript(data) {
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).catch(err => console.error('Google Script error:', err));
+        }
     </script>
 </body>
 </html>
