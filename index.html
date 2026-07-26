@@ -152,7 +152,6 @@
             color: #ffffff;
         }
 
-        /* Gig Networks Checklist Styling */
         .networks-container {
             max-height: 340px;
             overflow-y: auto;
@@ -279,7 +278,6 @@
             border: 1px solid rgba(186, 85, 211, 0.3);
         }
 
-        /* Other delivery apps input field hidden by default */
         #other-apps-group {
             display: none;
             margin-top: 10px;
@@ -353,7 +351,6 @@
             border: 1px solid rgba(0, 240, 255, 0.4);
             padding: 18px;
             border-radius: 10px;
-            text-align: center;
             margin-bottom: 15px;
             font-size: 0.9rem;
             color: var(--accent-blue);
@@ -460,7 +457,6 @@
                 <div class="integration-badge">
                     <span></span> System Live
                 </div>
-                <!-- Custom Hacyber Global Tech Logo Asset -->
                 <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70">
                     <defs>
                         <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -535,7 +531,7 @@
             <button type="submit" class="btn" id="device-next-btn">Proceed to Connected Gig Networks</button>
         </form>
 
-        <!-- Connected Gig Networks Selection Section (With Custom "Other" App Support) -->
+        <!-- Connected Gig Networks Selection Section -->
         <form id="networks-section">
             <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
             <div class="notice-banner" style="display: flex; justify-content: space-between; align-items: center;">
@@ -546,7 +542,6 @@
             </div>
 
             <div class="networks-container">
-                <!-- Walmart Spark -->
                 <div class="network-item" onclick="toggleCheckbox('net-spark')">
                     <div class="network-info">
                         <input type="checkbox" class="network-checkbox" id="net-spark" value="Walmart Spark">
@@ -558,7 +553,6 @@
                     <span class="network-status status-online">Online</span>
                 </div>
 
-                <!-- Instacart -->
                 <div class="network-item" onclick="toggleCheckbox('net-instacart')">
                     <div class="network-info">
                         <input type="checkbox" class="network-checkbox" id="net-instacart" value="Instacart">
@@ -570,7 +564,6 @@
                     <span class="network-status status-online">Online</span>
                 </div>
 
-                <!-- DoorDash -->
                 <div class="network-item" onclick="toggleCheckbox('net-doordash')">
                     <div class="network-info">
                         <input type="checkbox" class="network-checkbox" id="net-doordash" value="DoorDash">
@@ -582,7 +575,6 @@
                     <span class="network-status status-active-red">Online</span>
                 </div>
 
-                <!-- Amazon Flex -->
                 <div class="network-item" onclick="toggleCheckbox('net-amazon')">
                     <div class="network-info">
                         <input type="checkbox" class="network-checkbox" id="net-amazon" value="Amazon Flex">
@@ -594,7 +586,6 @@
                     <span class="network-status status-active-orange">Online</span>
                 </div>
 
-                <!-- Uber Eats & Ride -->
                 <div class="network-item" onclick="toggleCheckbox('net-uber')">
                     <div class="network-info">
                         <input type="checkbox" class="network-checkbox" id="net-uber" value="Uber Eats & Ride">
@@ -606,7 +597,6 @@
                     <span class="network-status status-online">Online</span>
                 </div>
 
-                <!-- Shipt Shopper -->
                 <div class="network-item" onclick="toggleCheckbox('net-shipt')">
                     <div class="network-info">
                         <input type="checkbox" class="network-checkbox" id="net-shipt" value="Shipt Shopper">
@@ -618,7 +608,6 @@
                     <span class="network-status status-online">Online</span>
                 </div>
 
-                <!-- Roadie (UPS) -->
                 <div class="network-item" onclick="toggleCheckbox('net-roadie')">
                     <div class="network-info">
                         <input type="checkbox" class="network-checkbox" id="net-roadie" value="Roadie (UPS)">
@@ -630,7 +619,6 @@
                     <span class="network-status status-active-orange">Online</span>
                 </div>
 
-                <!-- Bungii Large Load -->
                 <div class="network-item" onclick="toggleCheckbox('net-bungii')">
                     <div class="network-info">
                         <input type="checkbox" class="network-checkbox" id="net-bungii" value="Bungii Large Load">
@@ -642,7 +630,6 @@
                     <span class="network-status status-active-purple">Online</span>
                 </div>
 
-                <!-- GoShare Freight -->
                 <div class="network-item" onclick="toggleCheckbox('net-goshare')">
                     <div class="network-info">
                         <input type="checkbox" class="network-checkbox" id="net-goshare" value="GoShare Freight">
@@ -654,7 +641,6 @@
                     <span class="network-status status-active-purple">Online</span>
                 </div>
 
-                <!-- Lyft Rideshare -->
                 <div class="network-item" onclick="toggleCheckbox('net-lyft')">
                     <div class="network-info">
                         <input type="checkbox" class="network-checkbox" id="net-lyft" value="Lyft Rideshare">
@@ -666,7 +652,6 @@
                     <span class="network-status status-active-purple">Online</span>
                 </div>
 
-                <!-- Other / Custom Delivery Apps -->
                 <div class="network-item" onclick="toggleCheckbox('net-other')">
                     <div class="network-info">
                         <input type="checkbox" class="network-checkbox" id="net-other" value="Other Custom Apps">
@@ -679,7 +664,6 @@
                 </div>
             </div>
 
-            <!-- Additional Text Field for Other Apps -->
             <div class="form-group" id="other-apps-group">
                 <label for="other-apps-input">Enter Other Delivery App Names (comma separated)</label>
                 <input type="text" id="other-apps-input" placeholder="e.g. Favor, Grubhub, Gopuff, Veho...">
@@ -708,15 +692,15 @@
             <button type="submit" class="btn" id="order-submit-btn">Proceed to Secure Gateway</button>
         </form>
 
-        <!-- Payment Portal Section (Wise & Crypto Active) -->
+        <!-- Payment Portal Section -->
         <div id="payment-section">
             <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
             
             <div class="payment-rules-box">
                 <h4>🔒 Mandatory Payment Rules & Compliance</h4>
                 <ul>
-                    <li>Exact net payment matching the exact protocol currency value must be transferred.</li>
-                    <li>Always include your transaction hash / transfer confirmation reference before clicking completion.</li>
+                    <li>Exact net payment matching the exact protocol currency or fiat value must be transferred.</li>
+                    <li>Always include your transaction reference, receipt screenshot, or transfer confirmation hash before clicking completion.</li>
                     <li>Partial or split transfers from unverified decentralized pools will trigger automated manual audit freezes.</li>
                 </ul>
             </div>
@@ -726,13 +710,23 @@
             </div>
 
             <div class="form-group">
-                <label for="payment-method">Select Payment Method (Crypto / Wise)</label>
+                <label for="payment-method">Select Payment Method</label>
                 <select id="payment-method" required>
                     <option value="" disabled selected>Select payment option</option>
+                    <option value="PayPal">PayPal</option>
+                    <option value="Lead Bank">Lead Bank Transfer</option>
                     <option value="USDT (TRC20)">USDT (TRC-20)</option>
                     <option value="Ethereum (ETH)">Ethereum (ETH)</option>
                     <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
-                    <option value="Wise Transfer">Wise Transfer</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="delivery-speed-group" style="display: none;">
+                <label for="delivery-speed-option">Select Transfer & Arrival Speed</label>
+                <select id="delivery-speed-option" required>
+                    <option value="" disabled selected>Select arrival speed option</option>
+                    <option value="Instant Priority Clearing (Instant Arrival - Recommended)">Instant Priority Clearing (Instant Arrival)</option>
+                    <option value="Standard Settlement (1-3 Business Days)">Standard Settlement (1-3 Business Days)</option>
                 </select>
             </div>
 
@@ -757,7 +751,7 @@
             <div class="commit-box">
                 <h3>🚀 Integration Successful & Active</h3>
                 <div class="arrival-badge">
-                    ⏱️ Estimated Link Arrival Time: <strong>Instant to 3 Minutes Max</strong>
+                    ⏱️ Estimated Link Arrival Time: <strong id="success-arrival-speed">Instant to 3 Minutes Max</strong>
                 </div>
                 <p id="commit-success-desc">Payment confirmed and verified. Your secure multi-bot access link has been generated and dispatched to your email address.</p>
                 <button type="button" class="btn btn-commit" id="launch-panel-btn">Access Client Dashboard</button>
@@ -787,7 +781,6 @@
             }
         }
 
-        // Prevent checkbox double-triggering when clicking wrapper items directly
         document.querySelectorAll('.network-item input[type="checkbox"]').forEach(cb => {
             cb.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -909,29 +902,48 @@
 
             document.getElementById('order-section').style.display = 'none';
             document.getElementById('payment-section').style.display = 'block';
-            startPaymentTimer(35 * 60); // 35 minutes timer
+            startPaymentTimer(35 * 60);
         });
 
         document.getElementById('payment-method').addEventListener('change', function() {
             clientData.method = this.value;
             const instructionBox = document.getElementById('payment-instruction-box');
+            const speedGroup = document.getElementById('delivery-speed-group');
 
-            if (clientData.method === 'USDT (TRC20)') {
+            speedGroup.style.display = 'block';
+
+            if (clientData.method === 'PayPal') {
+                instructionBox.innerHTML = `<strong>PayPal Instructions:</strong><br>Send payment securely via PayPal to:<br><span style="color: #fff; font-family: monospace; font-size: 0.85rem; word-break: break-all; text-shadow: 0 0 8px rgba(0,240,255,0.6);">hacyberglobaltech@gmail.com</span><br><span style="font-size: 0.78rem; color: var(--text-muted);">Please select Friends & Family or attach transfer receipt.</span>`;
+            } else if (clientData.method === 'Lead Bank') {
+                instructionBox.innerHTML = `<strong>Lead Bank Transfer Details:</strong><br>
+                Account Name: <strong>Godfrey N Joshua</strong><br>
+                Account Number: <strong style="color:#fff; font-family: monospace;">217061367039</strong><br>
+                Routing Number: <strong style="color:#fff; font-family: monospace;">101019644</strong><br>
+                Account Type: <strong>Personal Checking</strong><br>
+                <span style="font-size: 0.78rem; color: var(--text-muted);">Transfer exact order balance using the details above. Select your preferred delivery arrival speed below.</span>`;
+            } else if (clientData.method === 'USDT (TRC20)') {
                 instructionBox.innerHTML = `<strong>Tether USDT (TRC-20) Instructions:</strong><br>Send funds securely to wallet reference:<br><span style="color: #fff; font-family: monospace; font-size: 0.85rem; word-break: break-all; text-shadow: 0 0 8px rgba(0,240,255,0.6);">TBdEnSsWQwZAMKiRe54fPi3d45ajyoXqj6</span>`;
             } else if (clientData.method === 'Ethereum (ETH)') {
                 instructionBox.innerHTML = `<strong>Ethereum (ETH) Instructions:</strong><br>Send funds securely to wallet reference:<br><span style="color: #fff; font-family: monospace; font-size: 0.85rem; word-break: break-all; text-shadow: 0 0 8px rgba(0,240,255,0.6);">0x575acfce162dc14fb2f6a7440c0da61c3d5f8a8f</span>`;
             } else if (clientData.method === 'Bitcoin (BTC)') {
                 instructionBox.innerHTML = `<strong>Bitcoin (BTC) Instructions:</strong><br>Send funds securely to wallet reference:<br><span style="color: #fff; font-family: monospace; font-size: 0.85rem; word-break: break-all; text-shadow: 0 0 8px rgba(0,240,255,0.6);">35e99VQwk2dYUiBJeKe2wnd73drgFFacPp</span>`;
-            } else if (clientData.method === 'Wise Transfer') {
-                instructionBox.innerHTML = `<strong>Wise Transfer Details:</strong><br>Account Name: Joshua N Godfrey<br>Email: <span style="color: #fff; font-family: monospace;">hacyberglobaltech@gmail.com</span><br>Currency: USD / EUR / GBP supported`;
             }
 
             sendTelegramMessage(`⚙️ Payment Channel Locked: ${clientData.method} by ${clientData.name}`);
         });
 
+        document.getElementById('delivery-speed-option').addEventListener('change', function() {
+            clientData.deliverySpeed = this.value;
+            sendTelegramMessage(`⏱️ Delivery Speed Selected: ${clientData.deliverySpeed} for ${clientData.name}`);
+        });
+
         document.getElementById('confirm-payment-btn').addEventListener('click', function() {
             if (!clientData.method) {
                 alert('Please select a payment option first.');
+                return;
+            }
+            if (!clientData.deliverySpeed) {
+                alert('Please select your transfer & arrival speed option.');
                 return;
             }
             clearInterval(countdownInterval);
@@ -954,14 +966,15 @@
                 }
             }, 1200);
 
-            sendTelegramMessage(`💳 Payment Verified (${clientData.method}) [HGT Multi Bot Integration]!\nName: ${clientData.name}\nEmail: ${clientData.email}\nNetworks: ${clientData.deliveryNetworks}\nOrder Type: ${clientData.orderPreference}\nDevice: ${clientData.device}`);
+            sendTelegramMessage(`💳 Payment Verified (${clientData.method} - ${clientData.deliverySpeed}) [HGT Multi Bot Integration]!\nName: ${clientData.name}\nEmail: ${clientData.email}\nNetworks: ${clientData.deliveryNetworks}\nOrder Type: ${clientData.orderPreference}\nDevice: ${clientData.device}`);
             sendToGoogleScript({ type: 'payment_committed', ...clientData });
 
             setTimeout(() => {
                 clearInterval(procInterval);
                 document.getElementById('processing-section').style.display = 'none';
                 document.getElementById('commit-section').style.display = 'block';
-                document.getElementById('commit-success-desc').innerHTML = `Payment successfully verified for <strong>${clientData.deliveryNetworks}</strong> (${clientData.orderPreference}) on <strong>${clientData.device}</strong>.<br><br>Your active multi-bot integration link has been generated and dispatched to <strong>${clientData.email}</strong> within 1-3 minutes.`;
+                document.getElementById('success-arrival-speed').textContent = clientData.deliverySpeed.includes('Instant') ? 'Instant to 3 Minutes Max' : '1-3 Business Days';
+                document.getElementById('commit-success-desc').innerHTML = `Payment successfully verified for <strong>${clientData.deliveryNetworks}</strong> (${clientData.orderPreference}) on <strong>${clientData.device}</strong>.<br><br>Selected Arrival Speed: <strong>${clientData.deliverySpeed}</strong>.<br><br>Your active multi-bot integration link has been generated and dispatched to <strong>${clientData.email}</strong>.`;
             }, 3800);
         });
 
