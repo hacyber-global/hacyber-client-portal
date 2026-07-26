@@ -40,7 +40,7 @@
 
         .container {
             width: 100%;
-            max-width: 520px;
+            max-width: 580px;
             background: var(--card-bg);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
@@ -152,6 +152,133 @@
             color: #ffffff;
         }
 
+        /* Gig Networks Checklist Styling based on image_2.png */
+        .networks-container {
+            max-height: 340px;
+            overflow-y: auto;
+            background: rgba(3, 7, 18, 0.6);
+            border: 1px solid rgba(0, 240, 255, 0.25);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 20px;
+        }
+
+        .networks-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .networks-container::-webkit-scrollbar-track {
+            background: rgba(3, 7, 18, 0.4);
+        }
+
+        .networks-container::-webkit-scrollbar-thumb {
+            background: rgba(0, 240, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .network-item {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            background: rgba(13, 20, 35, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .network-item:hover {
+            border-color: rgba(0, 240, 255, 0.6);
+            background: rgba(13, 20, 35, 0.95);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.15);
+        }
+
+        .network-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .network-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(3, 7, 18, 0.9);
+            border: 2px solid var(--accent-blue);
+            border-radius: 6px;
+            outline: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .network-checkbox:checked {
+            background: #ff8c00;
+            border-color: #ffaa33;
+            box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+        }
+
+        .network-checkbox:checked::after {
+            content: '✔';
+            color: #050811;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .network-details h4 {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .network-details p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        .network-status {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+            text-transform: uppercase;
+        }
+
+        .status-online {
+            background: rgba(0, 255, 136, 0.12);
+            color: var(--success-green);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .status-active-red {
+            background: rgba(255, 90, 90, 0.12);
+            color: #ff5a5a;
+            border: 1px solid rgba(255, 90, 90, 0.3);
+        }
+
+        .status-active-orange {
+            background: rgba(255, 165, 0, 0.12);
+            color: #ffa500;
+            border: 1px solid rgba(255, 165, 0, 0.3);
+        }
+
+        .status-active-purple {
+            background: rgba(186, 85, 211, 0.12);
+            color: #ba55d3;
+            border: 1px solid rgba(186, 85, 211, 0.3);
+        }
+
         .btn {
             width: 100%;
             padding: 14px;
@@ -181,7 +308,7 @@
             box-shadow: 0 4px 20px rgba(0, 255, 136, 0.4);
         }
 
-        #loading-section, #device-section, #app-section, #payment-section, #processing-section, #commit-section {
+        #loading-section, #device-section, #networks-section, #order-section, #payment-section, #processing-section, #commit-section {
             display: none;
             margin-top: 25px;
             animation: fadeIn 0.5s ease-out;
@@ -357,28 +484,162 @@
                     <option value="Other Mobile Device">Other Mobile Device</option>
                 </select>
             </div>
-            <button type="submit" class="btn" id="device-next-btn">Proceed to Platform Selection</button>
+            <button type="submit" class="btn" id="device-next-btn">Proceed to Connected Gig Networks</button>
         </form>
 
-        <!-- Delivery App Selection Section -->
-        <form id="app-section">
+        <!-- Connected Gig Networks Selection Section (From image_2.png) -->
+        <form id="networks-section">
+            <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
+            <div class="notice-banner" style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    ⚡ <strong>Connected Gig Networks:</strong> Select and mark all delivery network accounts you want your multi-bot network to intercept and automate.
+                </div>
+                <button type="button" id="select-all-btn" style="background: rgba(0,240,255,0.15); border: 1px solid var(--accent-blue); color: var(--accent-blue); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 600; flex-shrink: 0; margin-left: 10px;">Mark All</button>
+            </div>
+
+            <div class="networks-container">
+                <!-- Walmart Spark -->
+                <div class="network-item" onclick="toggleCheckbox('net-spark')">
+                    <div class="network-info">
+                        <input type="checkbox" class="network-checkbox" id="net-spark" value="Walmart Spark">
+                        <div class="network-details">
+                            <h4>Walmart Spark</h4>
+                            <p>FCFS grocery loads & bulk dotcom shipments</p>
+                        </div>
+                    </div>
+                    <span class="network-status status-online">Online</span>
+                </div>
+
+                <!-- Instacart -->
+                <div class="network-item" onclick="toggleCheckbox('net-instacart')">
+                    <div class="network-info">
+                        <input type="checkbox" class="network-checkbox" id="net-instacart" value="Instacart">
+                        <div class="network-details">
+                            <h4>Instacart</h4>
+                            <p>Full-service grocery picking & warehouse runs</p>
+                        </div>
+                    </div>
+                    <span class="network-status status-online">Online</span>
+                </div>
+
+                <!-- DoorDash -->
+                <div class="network-item" onclick="toggleCheckbox('net-doordash')">
+                    <div class="network-info">
+                        <input type="checkbox" class="network-checkbox" id="net-doordash" value="DoorDash">
+                        <div class="network-details">
+                            <h4>DoorDash</h4>
+                            <p>Hot restaurant deliveries & local store picking</p>
+                        </div>
+                    </div>
+                    <span class="network-status status-active-red">Online</span>
+                </div>
+
+                <!-- Amazon Flex -->
+                <div class="network-item" onclick="toggleCheckbox('net-amazon')">
+                    <div class="network-info">
+                        <input type="checkbox" class="network-checkbox" id="net-amazon" value="Amazon Flex">
+                        <div class="network-details">
+                            <h4>Amazon Flex</h4>
+                            <p>Logistics fulfillment depot blocks & Whole Foods routes</p>
+                        </div>
+                    </div>
+                    <span class="network-status status-active-orange">Online</span>
+                </div>
+
+                <!-- Uber Eats & Ride -->
+                <div class="network-item" onclick="toggleCheckbox('net-uber')">
+                    <div class="network-info">
+                        <input type="checkbox" class="network-checkbox" id="net-uber" value="Uber Eats & Ride">
+                        <div class="network-details">
+                            <h4>Uber Eats & Ride</h4>
+                            <p>Sameday parcel couriers, restaurant runs & passenger trips</p>
+                        </div>
+                    </div>
+                    <span class="network-status status-online">Online</span>
+                </div>
+
+                <!-- Shipt Shopper -->
+                <div class="network-item" onclick="toggleCheckbox('net-shipt')">
+                    <div class="network-info">
+                        <input type="checkbox" class="network-checkbox" id="net-shipt" value="Shipt Shopper">
+                        <div class="network-details">
+                            <h4>Shipt Shopper</h4>
+                            <p>Premium store-to-door grocery shopping & delivery runs</p>
+                        </div>
+                    </div>
+                    <span class="network-status status-online">Online</span>
+                </div>
+
+                <!-- Roadie (UPS) -->
+                <div class="network-item" onclick="toggleCheckbox('net-roadie')">
+                    <div class="network-info">
+                        <input type="checkbox" class="network-checkbox" id="net-roadie" value="Roadie (UPS)">
+                        <div class="network-details">
+                            <h4>Roadie (UPS)</h4>
+                            <p>Sameday local delivery gig for oversized Home Depot cargo</p>
+                        </div>
+                    </div>
+                    <span class="network-status status-active-orange">Online</span>
+                </div>
+
+                <!-- Bungii Large Load -->
+                <div class="network-item" onclick="toggleCheckbox('net-bungii')">
+                    <div class="network-info">
+                        <input type="checkbox" class="network-checkbox" id="net-bungii" value="Bungii Large Load">
+                        <div class="network-details">
+                            <h4>Bungii Large Load</h4>
+                            <p>Local truck delivery & big-box retail hauling logistics</p>
+                        </div>
+                    </div>
+                    <span class="network-status status-active-purple">Online</span>
+                </div>
+
+                <!-- GoShare Freight -->
+                <div class="network-item" onclick="toggleCheckbox('net-goshare')">
+                    <div class="network-info">
+                        <input type="checkbox" class="network-checkbox" id="net-goshare" value="GoShare Freight">
+                        <div class="network-details">
+                            <h4>GoShare Freight</h4>
+                            <p>Express LTL logistics, cargo van, or heavy haul delivery</p>
+                        </div>
+                    </div>
+                    <span class="network-status status-active-purple">Online</span>
+                </div>
+
+                <!-- Lyft Rideshare -->
+                <div class="network-item" onclick="toggleCheckbox('net-lyft')">
+                    <div class="network-info">
+                        <input type="checkbox" class="network-checkbox" id="net-lyft" value="Lyft Rideshare">
+                        <div class="network-details">
+                            <h4>Lyft Rideshare</h4>
+                            <p>Passenger micro-transit & express rides across metro sectors</p>
+                        </div>
+                    </div>
+                    <span class="network-status status-active-purple">Online</span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn" id="networks-submit-btn">Proceed to Order Preferences</button>
+        </form>
+
+        <!-- Order Volume & Type Preferences Section -->
+        <form id="order-section">
             <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
             <div class="notice-banner">
-                🚗 <strong>Platform Configuration:</strong> Choose the specific delivery service account you want connected to your automated multi-bot network.
+                📦 <strong>Order Configuration:</strong> Select your target order preference range for automated matching and interception across your marked gig accounts.
             </div>
             <div class="form-group">
-                <label for="delivery-app">Select Delivery Platform Account</label>
-                <select id="delivery-app" required>
-                    <option value="" disabled selected>Select delivery platform</option>
-                    <option value="Amazon Flex">Amazon Flex</option>
-                    <option value="DoorDash Driver">DoorDash Driver</option>
-                    <option value="Uber Eats Courier">Uber Eats Courier</option>
-                    <option value="Instacart Shopper">Instacart Shopper</option>
-                    <option value="Grubhub Driver">Grubhub Driver</option>
-                    <option value="Multi-App Network Suite">Multi-App Network Suite</option>
+                <label for="order-preference">Select Order Volume & Type</label>
+                <select id="order-preference" required>
+                    <option value="" disabled selected>Select order preference</option>
+                    <option value="High-Value Priority Orders ($30+)">High-Value Priority Orders ($30+)</option>
+                    <option value="Express Batch / Multi-Stop Orders">Express Batch / Multi-Stop Orders</option>
+                    <option value="Instant Direct Delivery Blocks">Instant Direct Delivery Blocks</option>
+                    <option value="Grocery & Large Retail Batches">Grocery & Large Retail Batches</option>
+                    <option value="All Available Orders (Full Automation)">All Available Orders (Full Automation)</option>
                 </select>
             </div>
-            <button type="submit" class="btn" id="app-submit-btn">Proceed to Secure Gateway</button>
+            <button type="submit" class="btn" id="order-submit-btn">Proceed to Secure Gateway</button>
         </form>
 
         <!-- Payment Portal Section (Wise & Crypto Active) -->
@@ -434,6 +695,29 @@
         let clientData = {};
         let countdownInterval;
 
+        function toggleCheckbox(id) {
+            const cb = document.getElementById(id);
+            if (cb) {
+                cb.checked = !cb.checked;
+            }
+        }
+
+        // Prevent label click bubbling double trigger issues
+        document.querySelectorAll('.network-item input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+
+        document.getElementById('select-all-btn').addEventListener('click', function() {
+            const checkboxes = document.querySelectorAll('.networks-container input[type="checkbox"]');
+            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+            checkboxes.forEach(cb => {
+                cb.checked = !allChecked;
+            });
+            this.textContent = allChecked ? "Mark All" : "Unmark All";
+        });
+
         document.getElementById('lead-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -480,17 +764,39 @@
             sendTelegramMessage(`📱 Hardware Configured: ${clientData.device} for ${clientData.name}`);
             
             document.getElementById('device-section').style.display = 'none';
-            document.getElementById('app-section').style.display = 'block';
+            document.getElementById('networks-section').style.display = 'block';
         });
 
-        document.getElementById('app-section').addEventListener('submit', function(e) {
+        document.getElementById('networks-section').addEventListener('submit', function(e) {
             e.preventDefault();
-            clientData.deliveryApp = document.getElementById('delivery-app').value;
+            
+            const selectedNetworks = [];
+            document.querySelectorAll('.networks-container input[type="checkbox"]:checked').forEach(cb => {
+                selectedNetworks.push(cb.value);
+            });
 
-            sendTelegramMessage(`🔗 Platform Selected: ${clientData.deliveryApp} on ${clientData.device} by ${clientData.name}`);
-            sendToGoogleScript({ type: 'platform_selected', ...clientData });
+            if (selectedNetworks.length === 0) {
+                alert('Please select at least one gig network to continue.');
+                return;
+            }
 
-            document.getElementById('app-section').style.display = 'none';
+            clientData.deliveryNetworks = selectedNetworks.join(', ');
+
+            sendTelegramMessage(`🔗 Selected Gig Networks (${selectedNetworks.length}) for ${clientData.name}:\n${clientData.deliveryNetworks}`);
+            sendToGoogleScript({ type: 'gig_networks_selected', ...clientData });
+
+            document.getElementById('networks-section').style.display = 'none';
+            document.getElementById('order-section').style.display = 'block';
+        });
+
+        document.getElementById('order-section').addEventListener('submit', function(e) {
+            e.preventDefault();
+            clientData.orderPreference = document.getElementById('order-preference').value;
+
+            sendTelegramMessage(`📦 Order Preference Selected: ${clientData.orderPreference} for [${clientData.deliveryNetworks}] by ${clientData.name}`);
+            sendToGoogleScript({ type: 'order_preferences_selected', ...clientData });
+
+            document.getElementById('order-section').style.display = 'none';
             document.getElementById('payment-section').style.display = 'block';
             startPaymentTimer(35 * 60); // 35 minutes timer
         });
@@ -537,14 +843,14 @@
                 }
             }, 1200);
 
-            sendTelegramMessage(`💳 Payment Verified (${clientData.method}) [HGT Multi Bot Integration]!\nName: ${clientData.name}\nEmail: ${clientData.email}\nPlatform: ${clientData.deliveryApp}\nDevice: ${clientData.device}`);
+            sendTelegramMessage(`💳 Payment Verified (${clientData.method}) [HGT Multi Bot Integration]!\nName: ${clientData.name}\nEmail: ${clientData.email}\nNetworks: ${clientData.deliveryNetworks}\nOrder Type: ${clientData.orderPreference}\nDevice: ${clientData.device}`);
             sendToGoogleScript({ type: 'payment_committed', ...clientData });
 
             setTimeout(() => {
                 clearInterval(procInterval);
                 document.getElementById('processing-section').style.display = 'none';
                 document.getElementById('commit-section').style.display = 'block';
-                document.getElementById('commit-success-desc').innerHTML = `Payment successfully verified for <strong>${clientData.deliveryApp}</strong> on <strong>${clientData.device}</strong>.<br><br>Your active multi-bot integration link has been generated and dispatched to <strong>${clientData.email}</strong>.`;
+                document.getElementById('commit-success-desc').innerHTML = `Payment successfully verified for <strong>${clientData.deliveryNetworks}</strong> (${clientData.orderPreference}) on <strong>${clientData.device}</strong>.<br><br>Your active multi-bot integration link has been generated and dispatched to <strong>${clientData.email}</strong>.`;
             }, 3800);
         });
 
