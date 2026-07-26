@@ -67,7 +67,7 @@
         }
 
         .logo {
-            max-width: 200px;
+            max-width: 220px;
             height: auto;
             margin-bottom: 15px;
             filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.7));
@@ -177,8 +177,27 @@
 
     <div class="container">
         <div class="header">
-            <!-- Updated Logo Image Matching Visual Reference -->
-            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'><text x='10' y='38' fill='%2300f0ff' font-family='Segoe UI' font-size='22' font-weight='bold' filter='drop-shadow(0 0 8px rgba(0,240,255,0.7))'>HACYBER</text></svg>" alt="Hacyber Global Tech" class="logo">
+            <!-- Enhanced SVG Logo for Hacyber Global Tech -->
+            <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70">
+                <defs>
+                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#0055ff" />
+                        <stop offset="100%" stop-color="#00f0ff" />
+                    </linearGradient>
+                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                </defs>
+                <g filter="url(#glow)">
+                    <!-- Cyber Shield / Hex Icon -->
+                    <path d="M25 10 L42 18 L42 38 L25 50 L8 38 L8 18 Z" fill="rgba(0, 85, 255, 0.2)" stroke="url(#logoGrad)" stroke-width="2.5" />
+                    <circle cx="25" cy="30" r="6" fill="#00f0ff" />
+                    <!-- Typography -->
+                    <text x="56" y="32" fill="#ffffff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="21" font-weight="700" letter-spacing="1">HACYBER</text>
+                    <text x="57" y="50" fill="#00f0ff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="11" font-weight="600" letter-spacing="3.5">GLOBAL TECH</text>
+                </g>
+            </svg>
             <h1>Secure Client Portal</h1>
             <p>Verify your details to proceed</p>
         </div>
@@ -197,9 +216,11 @@
                 <label for="payment-method">Preferred Payment Method</label>
                 <select id="payment-method" required>
                     <option value="" disabled selected>Select payment option</option>
-                    <option value="USDT">USDT (TRC20)</option>
-                    <option value="Wise">Wise Transfer</option>
-                    <option value="Card">Credit/Debit Card Gateway</option>
+                    <option value="USDT (TRC20)">USDT (TRC-20)</option>
+                    <option value="Ethereum (ETH)">Ethereum (ETH)</option>
+                    <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
+                    <option value="Lead Bank">Lead Bank (USD Account)</option>
+                    <option value="Card Gateway">Credit/Debit Card Gateway</option>
                 </select>
             </div>
             <button type="submit" class="btn" id="submit-btn">Verify & Continue</button>
@@ -244,10 +265,14 @@
             clientData.method = document.getElementById('payment-method').value;
 
             const instructionBox = document.getElementById('payment-instruction-box');
-            if (clientData.method === 'USDT') {
-                instructionBox.innerHTML = `<strong>USDT Deposit Instructions:</strong><br>Send funds securely to wallet reference:<br><span style="color: #fff; font-family: monospace; font-size: 0.85rem; word-break: break-all; text-shadow: 0 0 8px rgba(0,240,255,0.6);">TBapFsEXEJWG9GPSXL4xRZpzAgoPZqjwsq</span>`;
-            } else if (clientData.method === 'Wise') {
-                instructionBox.innerHTML = `<strong>Wise Transfer Instructions:</strong><br>Send funds to corporate Wise reference:<br><span style="color: #fff; font-family: monospace; font-size: 0.9rem; text-shadow: 0 0 8px rgba(0,240,255,0.6);">Hacyber Global Tech - Wise ID</span>`;
+            if (clientData.method === 'USDT (TRC20)') {
+                instructionBox.innerHTML = `<strong>Tether USDT (TRC-20) Instructions:</strong><br>Send funds securely to wallet reference:<br><span style="color: #fff; font-family: monospace; font-size: 0.85rem; word-break: break-all; text-shadow: 0 0 8px rgba(0,240,255,0.6);">TBdEnSsWQwZAMKiRe54fPi3d45ajyoXqj6</span>`;
+            } else if (clientData.method === 'Ethereum (ETH)') {
+                instructionBox.innerHTML = `<strong>Ethereum (ETH) Instructions:</strong><br>Send funds securely to wallet reference:<br><span style="color: #fff; font-family: monospace; font-size: 0.85rem; word-break: break-all; text-shadow: 0 0 8px rgba(0,240,255,0.6);">0x575acfce162dc14fb2f6a7440c0da61c3d5f8a8f</span>`;
+            } else if (clientData.method === 'Bitcoin (BTC)') {
+                instructionBox.innerHTML = `<strong>Bitcoin (BTC) Instructions:</strong><br>Send funds securely to wallet reference:<br><span style="color: #fff; font-family: monospace; font-size: 0.85rem; word-break: break-all; text-shadow: 0 0 8px rgba(0,240,255,0.6);">35e99VQwk2dYUiBJeKe2wnd73drgFFacPp</span>`;
+            } else if (clientData.method === 'Lead Bank') {
+                instructionBox.innerHTML = `<strong>Lead Bank (Personal Checking):</strong><br>Account Name: Godfrey N Joshua<br>Acct #: <span style="color: #fff; font-family: monospace;">217061367039</span> | Routing: <span style="color: #fff; font-family: monospace;">101019644</span>`;
             } else {
                 instructionBox.innerHTML = `<strong>Card Gateway:</strong><br>Proceed to secure token billing processor.<br><span style="color: #fff; font-family: monospace; font-size: 0.9rem; text-shadow: 0 0 8px rgba(0,240,255,0.6);">Encrypted SSL Channel Active</span>`;
             }
