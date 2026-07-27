@@ -1,501 +1,129 @@
 <!DOCTYPE html>
-<html lang="en" __gcrremoteframetoken="48ff2628c4de2879d229423c8aa2b59a"><head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacyber Global Tech - Multi-Bot Integration Portal &amp; Pricing</title>
+    <title>Hacyber Global Tech | HGT Spark Bot Integration Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #050811;
-            --card-bg: rgba(13, 20, 35, 0.92);
-            --primary-blue: #0055ff;
-            --accent-blue: #00f0ff;
-            --amber-glow: #ffaa00;
-            --success-green: #00ff88;
-            --text-main: #ffffff;
-            --text-muted: #a5b4fc;
-            --border-color: rgba(0, 240, 255, 0.4);
-            --glow-shadow: 0 0 40px rgba(0, 119, 255, 0.5), inset 0 0 20px rgba(0, 240, 255, 0.15);
+            --bg-dark: #080b10;
+            --card-bg: #0f1520;
+            --primary: #00f0ff;
+            --secondary: #7000ff;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-glow: rgba(0, 240, 255, 0.25);
+            --success: #00ff88;
+            --warning: #ffb700;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Rajdhani', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(circle at 50% 5%, rgba(0, 119, 255, 0.35) 0%, transparent 55%),
-                radial-gradient(circle at 10% 90%, rgba(0, 240, 255, 0.2) 0%, transparent 40%);
+            background-color: var(--bg-dark);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            justify-content: flex-start;
-            padding: 20px 15px 40px 15px;
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(112, 0, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(0, 240, 255, 0.15) 0%, transparent 40%);
         }
 
         .container {
             width: 100%;
-            max-width: 680px;
+            max-width: 850px;
             background: var(--card-bg);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1.5px solid var(--border-color);
-            border-radius: 20px;
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
             padding: 30px;
-            box-shadow: var(--glow-shadow);
-            animation: fadeIn 0.6s ease-out, pulseGlow 4s infinite alternate;
-        }
-
-        @keyframes pulseGlow {
-            0% {
-                box-shadow: 0 0 25px rgba(0, 119, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.1);
-                border-color: rgba(0, 240, 255, 0.3);
-            }
-            100% {
-                box-shadow: 0 0 50px rgba(0, 200, 255, 0.8), inset 0 0 25px rgba(0, 240, 255, 0.35);
-                border-color: rgba(0, 240, 255, 0.9);
-            }
+            position: relative;
+            overflow: hidden;
         }
 
         .header {
             text-align: center;
             margin-bottom: 25px;
-        }
-
-        .brand-top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 18px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .integration-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(0, 240, 255, 0.08);
-            border: 1px solid rgba(0, 240, 255, 0.35);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: var(--accent-blue);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
-        }
-
-        .integration-badge span {
-            width: 7px;
-            height: 7px;
-            background-color: var(--success-green);
-            border-radius: 50%;
-            box-shadow: 0 0 6px var(--success-green);
-            animation: blink 2s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .download-html-btn {
-            background: rgba(0, 240, 255, 0.15);
-            border: 1px solid var(--accent-blue);
-            color: #ffffff;
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
-        }
-
-        .download-html-btn:hover {
-            background: var(--accent-blue);
-            color: #050811;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.7);
-            transform: translateY(-1px);
-        }
-
-        .logo {
-            max-width: 170px;
-            height: auto;
-            filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.7));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
         }
 
         .header h1 {
-            font-size: 1.55rem;
-            font-weight: 700;
-            color: var(--text-main);
-            letter-spacing: 0.5px;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
-            margin-top: 5px;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.8rem;
         }
 
-        .header p {
+        .status-badge {
+            display: inline-block;
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+            padding: 4px 12px;
+            border-radius: 20px;
             font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 4px;
+            margin-top: 10px;
+            font-weight: 700;
         }
 
-        .section-title {
+        /* FEATURE GRID STYLES */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-            margin-bottom: 12px;
+            color: var(--primary);
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        label {
-            display: block;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px 14px;
-            background: rgba(3, 7, 18, 0.85);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 10px;
-            color: var(--text-main);
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 18px rgba(0, 240, 255, 0.5), inset 0 0 5px rgba(0, 240, 255, 0.2);
-        }
-
-        select option {
-            background-color: #0b0f19;
-            color: #ffffff;
-        }
-
-        /* Pricing Tiers Grid */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .pricing-card {
-            background: rgba(3, 7, 18, 0.7);
-            border: 1.5px solid rgba(0, 240, 255, 0.25);
-            border-radius: 12px;
-            padding: 14px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pricing-card:hover, .pricing-card.selected {
-            border-color: var(--accent-blue);
-            background: rgba(0, 85, 255, 0.2);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .pricing-card.selected::before {
-            content: '✓ SELECTED';
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: var(--accent-blue);
-            color: #050811;
-            font-size: 0.62rem;
-            font-weight: 900;
-            padding: 2px 6px;
-            border-bottom-left-radius: 6px;
-        }
-
-        .pricing-card h3 {
-            font-size: 0.85rem;
-            color: #ffffff;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .pricing-card .price {
-            font-size: 1.25rem;
-            font-weight: 900;
-            color: var(--accent-blue);
-            margin-bottom: 4px;
-            font-family: monospace;
-        }
-
-        .pricing-card .period {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-        }
-
-        /* Gig Networks List */
-        .networks-container {
-            max-height: 280px;
-            overflow-y: auto;
-            background: rgba(3, 7, 18, 0.6);
-            border: 1px solid rgba(0, 240, 255, 0.25);
-            border-radius: 12px;
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-
-        .networks-container::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .networks-container::-webkit-scrollbar-thumb {
-            background: rgba(0, 240, 255, 0.3);
-            border-radius: 4px;
-        }
-
-        .network-item {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            background: rgba(13, 20, 35, 0.7);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 10px;
-            padding: 10px 12px;
-            margin-bottom: 8px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .network-item:hover {
-            border-color: rgba(0, 240, 255, 0.6);
-            background: rgba(13, 20, 35, 0.95);
-        }
-
-        .network-info {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .network-checkbox {
-            appearance: none;
-            -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
-            background: rgba(3, 7, 18, 0.9);
-            border: 2px solid var(--accent-blue);
-            border-radius: 5px;
-            outline: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .network-checkbox:checked {
-            background: var(--amber-glow);
-            border-color: #ffaa33;
-            box-shadow: 0 0 10px rgba(255, 170, 0, 0.6);
-        }
-
-        .network-checkbox:checked::after {
-            content: '✓';
-            color: #050811;
-            font-size: 11px;
-            font-weight: 900;
-        }
-
-        .network-details h4 {
+        .feature-card p {
             font-size: 0.88rem;
-            color: var(--text-main);
-            font-weight: 600;
-        }
-
-        .network-details p {
-            font-size: 0.75rem;
             color: var(--text-muted);
+            line-height: 1.35;
         }
 
-        .network-status {
-            font-size: 0.65rem;
-            font-weight: 700;
-            padding: 2px 7px;
-            border-radius: 6px;
-            letter-spacing: 0.5px;
-            flex-shrink: 0;
-            text-transform: uppercase;
-        }
-
-        .status-online {
-            background: rgba(0, 255, 136, 0.12);
-            color: var(--success-green);
-            border: 1px solid rgba(0, 255, 136, 0.3);
-        }
-
-        /* Rules Box */
-        .bot-rules-box {
-            background: rgba(0, 85, 255, 0.08);
-            border: 1.5px solid rgba(0, 240, 255, 0.3);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 20px;
-        }
-
-        .bot-rules-box h4 {
-            color: var(--accent-blue);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .bot-rules-list {
-            list-style: none;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        .bot-rules-list li {
-            position: relative;
-            padding-left: 18px;
-            margin-bottom: 8px;
-        }
-
-        .bot-rules-list li::before {
-            content: '⚡';
-            position: absolute;
-            left: 0;
-            top: 0;
-            font-size: 11px;
-        }
-
-        .notice-banner {
-            background: rgba(0, 240, 255, 0.1);
-            border-left: 3px solid var(--accent-blue);
-            padding: 12px;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 18px;
-            line-height: 1.5;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 119, 255, 0.6);
-            letter-spacing: 0.5px;
-        }
-
-        .btn:hover {
-            opacity: 0.95;
-            transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
-        }
-
-        .btn-commit {
-            background: linear-gradient(135deg, #0099ff, var(--success-green));
-            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.4);
-        }
-
-        .payment-card {
-            background: rgba(3, 7, 18, 0.85);
-            border: 1px solid rgba(0, 240, 255, 0.4);
-            padding: 16px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 0.88rem;
-            color: var(--accent-blue);
-            box-shadow: inset 0 0 12px rgba(0, 240, 255, 0.15);
-        }
-
-        .wallet-address-box {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px border-dashed rgba(0, 240, 255, 0.5);
-            padding: 10px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 0.85rem;
-            color: #ffffff;
-            word-break: break-all;
-            margin: 8px 0;
-            user-select: all;
-        }
-
-        .timer-box {
-            font-family: monospace;
-            font-size: 1.15rem;
-            color: #ffffff;
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px dashed var(--accent-blue);
-            padding: 8px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            text-align: center;
-            letter-spacing: 2px;
-        }
-
-        #loading-section, #device-section, #networks-section, #order-section, #payment-section, #processing-section, #commit-section {
+        .step-container {
             display: none;
-            margin-top: 20px;
-            animation: fadeIn 0.4s ease-out;
         }
 
-        .loader-container {
-            text-align: center;
-            padding: 25px 0;
-        }
-
-        .spinner {
-            width: 48px;
-            height: 48px;
-            border: 3px solid rgba(0, 240, 255, 0.2);
-            border-top: 3px solid var(--accent-blue);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .step-container.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
         }
 
         @keyframes fadeIn {
@@ -503,520 +131,402 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .commit-box {
-            text-align: center;
-            padding: 20px;
-            background: rgba(0, 255, 136, 0.05);
-            border: 1px solid var(--success-green);
-            border-radius: 12px;
+        .form-group {
+            margin-bottom: 20px;
         }
 
-        .commit-box h3 {
-            color: var(--success-green);
-            margin-bottom: 10px;
-        }
-
-        .arrival-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(0, 255, 136, 0.1);
-            border: 1px solid rgba(0, 255, 136, 0.35);
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: var(--success-green);
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary);
             font-weight: 600;
-            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
             width: 100%;
-            justify-content: center;
+            padding: 12px 16px;
+            background: rgba(8, 11, 16, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .checkbox-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s ease;
+        }
+
+        .checkbox-card:hover {
+            border-color: var(--primary);
+            background: rgba(0, 240, 255, 0.05);
+        }
+
+        .price-summary {
+            background: rgba(112, 0, 255, 0.1);
+            border: 1px solid var(--secondary);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .price-row.total {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 8px;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* PAYMENT INSTRUCTION CARD */
+        .payment-info-box {
+            display: none;
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+
+        .payment-info-box h4 {
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 8px;
+        }
+
+        .payment-info-box p {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        .payment-info-box code {
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--success);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        .file-upload-wrapper {
+            position: relative;
+            border: 2px dashed var(--primary);
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            background: rgba(0, 240, 255, 0.02);
+            cursor: pointer;
+        }
+
+        .file-upload-wrapper input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+        }
+
+        .notice {
+            background: rgba(255, 183, 0, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: 12px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            border-radius: 0 6px 6px 0;
         }
     </style>
-<script src="/_aistudio-iframe.js"></script></head>
+</head>
 <body>
 
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="brand-top-bar">
-                <div class="integration-badge">
-                    <span></span> System Active &amp; Connected
+<div class="container">
+    <div class="header">
+        <h1>Hacyber Global Tech</h1>
+        <div class="status-badge">⚡ HGT Spark Bot Active | Multi-Network Interceptor</div>
+    </div>
+
+    <!-- HGT SPARK BOT KEY FEATURES HIGHLIGHT -->
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>⚡ Sub-100ms Grabber</h3>
+            <p>High-speed, automated block interception designed to capture high-value offers before human refresh speeds.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🛡️ Stealth & Anti-Detect</h3>
+            <p>Encrypted request signatures and hardware profile spoofing prevent account flags or security triggers.</p>
+        </div>
+        <div class="feature-card">
+            <h3>⚙️ Custom Multi-App Filtering</h3>
+            <p>Target specific dollar thresholds ($30+), delivery ranges, and batch types across Spark, Flex, and major gig networks.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔄 Persistent 24/7 Container Run</h3>
+            <p>Runs in dedicated persistent container instances ensuring uninterrupted, always-on dispatch interception.</p>
+        </div>
+    </div>
+
+    <form id="integrationForm" onsubmit="handleFormSubmit(event)">
+        <!-- STEP 1: Client Profile -->
+        <div class="step-container active" id="step1">
+            <h2 style="color: var(--primary); margin-bottom: 15px;">1. Client Profile & Location</h2>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="fullName" required placeholder="Godfrey Joshua">
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="client@example.com">
                 </div>
-                <button type="button" class="download-html-btn" id="download-portal-btn" onclick="downloadCurrentPortalHTML()">
-                    📥 Download Portal HTML
-                </button>
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input type="tel" id="mobile" required placeholder="+1 (555) 000-0000">
+                </div>
             </div>
-            
-            <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70">
-                <defs>
-                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#0055ff"></stop>
-                        <stop offset="100%" stop-color="#00f0ff"></stop>
-                    </linearGradient>
-                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="3" result="blur"></feGaussianBlur>
-                        <feComposite in="SourceGraphic" in2="blur" operator="over"></feComposite>
-                    </filter>
-                </defs>
-                <g filter="url(#glow)">
-                    <path d="M25 10 L42 18 L42 38 L25 50 L8 38 L8 18 Z" fill="rgba(0, 85, 255, 0.2)" stroke="url(#logoGrad)" stroke-width="2.5"></path>
-                    <circle cx="25" cy="30" r="6" fill="#00f0ff"></circle>
-                    <text x="56" y="32" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="21" font-weight="700" letter-spacing="1">HACYBER</text>
-                    <text x="57" y="50" fill="#00f0ff" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600" letter-spacing="3.5">GLOBAL TECH</text>
-                </g>
-            </svg>
-
-            <h1>Multi-Bot Integration &amp; License Portal</h1>
-            <p>Official dispatch automation gateway &amp; client license setup</p>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Street Address</label>
+                    <input type="text" id="streetAddress" required placeholder="123 Logistics Way">
+                </div>
+                <div class="form-group">
+                    <label>Zip Code / Postal Code</label>
+                    <input type="text" id="zipCode" required placeholder="75001">
+                </div>
+            </div>
+            <button type="button" class="btn" onclick="nextStep(2)">Continue Integration →</button>
         </div>
 
-        <!-- Section 1: Lead Registration -->
-        <form id="lead-form" __gcruniqueid="1">
-            <div class="section-title">👤 Step 1: Driver Client Registration</div>
+        <!-- STEP 2: Hardware & Target Networks -->
+        <div class="step-container" id="step2">
+            <h2 style="color: var(--primary); margin-bottom: 15px;">2. Hardware & Gig Networks</h2>
             <div class="form-group">
-                <label for="fullname">Full Name</label>
-                <input type="text" id="fullname" required="" placeholder="Enter your full name" __gcruniqueid="2">
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" required="" placeholder="name@example.com" __gcruniqueid="3">
-            </div>
-            <div class="form-group">
-                <label for="phone">Mobile Number</label>
-                <input type="tel" id="phone" required="" placeholder="Enter mobile phone number" __gcruniqueid="4">
-            </div>
-            <div class="form-group">
-                <label for="address">Street Address</label>
-                <input type="text" id="address" required="" placeholder="Enter street address" __gcruniqueid="5">
-            </div>
-            <div class="form-group">
-                <label for="zipcode">Zip / Postal Code</label>
-                <input type="text" id="zipcode" required="" placeholder="Enter postal code" __gcruniqueid="6">
-            </div>
-            <button type="submit" class="btn">Proceed to Device Setup</button>
-        </form>
-
-        <!-- Loading State -->
-        <div id="loading-section">
-            <div class="loader-container">
-                <div class="spinner"></div>
-                <div style="color: var(--text-muted); font-size: 0.9rem;" id="loading-status-text">Verifying client profile &amp; locking secure session...</div>
-            </div>
-        </div>
-
-        <!-- Section 2: Operating Device -->
-        <form id="device-section" __gcruniqueid="7">
-            <div class="section-title">📱 Step 2: Primary Mobile Device</div>
-            <div class="notice-banner">
-                Select the primary phone or device you use for delivery operations.
-            </div>
-            <div class="form-group">
-                <label for="device-select">Select Mobile Operating System</label>
-                <select id="device-select" required="" __gcruniqueid="8">
-                    <option value="" disabled="" selected="">Select operating device</option>
+                <label>📱 Primary Mobile Operating System</label>
+                <select id="hardwareProfile" required>
+                    <option value="">Select operating device</option>
                     <option value="iPhone (iOS)">iPhone (iOS)</option>
                     <option value="Android Smartphone">Android Smartphone</option>
                     <option value="Dedicated Delivery Tablet">Dedicated Delivery Tablet</option>
-                    <option value="Other Mobile Device">Other Device</option>
+                    <option value="Other Mobile Device">Other Mobile Device</option>
                 </select>
-            </div>
-            <button type="submit" class="btn">Proceed to Gig Networks</button>
-        </form>
-
-        <!-- Section 3: Gig Networks Selection -->
-        <form id="networks-section" __gcruniqueid="9">
-            <div class="section-title">⚡ Step 3: Connected Gig Delivery Networks</div>
-            <div class="notice-banner" style="display:flex; justify-content:space-between; align-items:center;">
-                <span>Select all logistics platforms you want your multi-bot to intercept.</span>
-                <button type="button" id="select-all-btn" style="background: rgba(0,240,255,0.2); border: 1px solid var(--accent-blue); color: var(--accent-blue); padding: 4px 8px; border-radius: 6px; cursor: pointer; font-size: 0.72rem; font-weight: 700;">Select All</button>
-            </div>
-
-            <div class="networks-container">
-                <div class="network-item" onclick="toggleCheckbox('net-spark')">
-                    <div class="network-info">
-                        <input type="checkbox" class="network-checkbox" id="net-spark" value="Walmart Spark">
-                        <div class="network-details">
-                            <h4>Walmart Spark</h4>
-                            <p>Grocery, bulk dotcom &amp; FCFS order grabber</p>
-                        </div>
-                    </div>
-                    <span class="network-status status-online">Online</span>
-                </div>
-
-                <div class="network-item" onclick="toggleCheckbox('net-instacart')">
-                    <div class="network-info">
-                        <input type="checkbox" class="network-checkbox" id="net-instacart" value="Instacart">
-                        <div class="network-details">
-                            <h4>Instacart</h4>
-                            <p>Full-service grocery picking &amp; warehouse batches</p>
-                        </div>
-                    </div>
-                    <span class="network-status status-online">Online</span>
-                </div>
-
-                <div class="network-item" onclick="toggleCheckbox('net-doordash')">
-                    <div class="network-info">
-                        <input type="checkbox" class="network-checkbox" id="net-doordash" value="DoorDash">
-                        <div class="network-details">
-                            <h4>DoorDash</h4>
-                            <p>Restaurant orders, grocery &amp; retail shop deliveries</p>
-                        </div>
-                    </div>
-                    <span class="network-status status-online">Online</span>
-                </div>
-
-                <div class="network-item" onclick="toggleCheckbox('net-amazon')">
-                    <div class="network-info">
-                        <input type="checkbox" class="network-checkbox" id="net-amazon" value="Amazon Flex">
-                        <div class="network-details">
-                            <h4>Amazon Flex</h4>
-                            <p>Logistics depot blocks &amp; Whole Foods routes</p>
-                        </div>
-                    </div>
-                    <span class="network-status status-online">Online</span>
-                </div>
-
-                <div class="network-item" onclick="toggleCheckbox('net-uber')">
-                    <div class="network-info">
-                        <input type="checkbox" class="network-checkbox" id="net-uber" value="Uber Eats &amp; Ride">
-                        <div class="network-details">
-                            <h4>Uber Eats &amp; Rides</h4>
-                            <p>Food delivery, passenger trips &amp; courier packages</p>
-                        </div>
-                    </div>
-                    <span class="network-status status-online">Online</span>
-                </div>
-
-                <div class="network-item" onclick="toggleCheckbox('net-shipt')">
-                    <div class="network-info">
-                        <input type="checkbox" class="network-checkbox" id="net-shipt" value="Shipt Shopper">
-                        <div class="network-details">
-                            <h4>Shipt Shopper</h4>
-                            <p>Store-to-door grocery shopping batches</p>
-                        </div>
-                    </div>
-                    <span class="network-status status-online">Online</span>
-                </div>
-
-                <div class="network-item" onclick="toggleCheckbox('net-roadie')">
-                    <div class="network-info">
-                        <input type="checkbox" class="network-checkbox" id="net-roadie" value="Roadie (UPS)">
-                        <div class="network-details">
-                            <h4>Roadie (UPS)</h4>
-                            <p>Oversized freight, Home Depot &amp; retail courier runs</p>
-                        </div>
-                    </div>
-                    <span class="network-status status-online">Online</span>
-                </div>
-
-                <div class="network-item" onclick="toggleCheckbox('net-other')">
-                    <div class="network-info">
-                        <input type="checkbox" class="network-checkbox" id="net-other" value="Other Custom Apps">
-                        <div class="network-details">
-                            <h4>Other Delivery Platforms</h4>
-                            <p>Specify regional apps (Grubhub, Favor, Gopuff, Veho...)</p>
-                        </div>
-                    </div>
-                    <span class="network-status status-online">Custom</span>
-                </div>
-            </div>
-
-            <div class="form-group" id="other-apps-group" style="display:none;">
-                <label for="other-apps-input">Custom App Names (comma separated)</label>
-                <input type="text" id="other-apps-input" placeholder="e.g. Favor, Grubhub, Gopuff, Veho..." __gcruniqueid="10">
-            </div>
-
-            <button type="submit" class="btn">Proceed to Pricing &amp; Rules</button>
-        </form>
-
-        <!-- Section 4: Pricing Tiers & Bot Rules -->
-        <form id="order-section" __gcruniqueid="11">
-            <div class="section-title">💎 Step 4: Bot License Plan &amp; Operating Rules</div>
-            
-            <label style="margin-bottom: 8px;">Select Bot License Duration &amp; Price Plan:</label>
-            <div class="pricing-grid">
-                <div class="pricing-card" onclick="selectPricing('Weekly Pass', 50, this)">
-                    <h3>Weekly Pass</h3>
-                    <div class="price">$50</div>
-                    <div class="period">7 Days License</div>
-                </div>
-                <div class="pricing-card selected" onclick="selectPricing('Monthly License', 150, this)">
-                    <h3>Monthly Pass</h3>
-                    <div class="price">$150</div>
-                    <div class="period">30 Days License</div>
-                </div>
-                <div class="pricing-card" onclick="selectPricing('3-Month License', 280, this)">
-                    <h3>3-Month Pro</h3>
-                    <div class="price">$280</div>
-                    <div class="period">90 Days License</div>
-                </div>
-                <div class="pricing-card" onclick="selectPricing('Lifetime Unlimited', 500, this)">
-                    <h3>Lifetime</h3>
-                    <div class="price">$500</div>
-                    <div class="period">Unlimited Access</div>
-                </div>
-            </div>
-
-            <!-- Bot Rules -->
-            <div class="bot-rules-box">
-                <h4>📜 Official Bot Operating Rules &amp; Terms</h4>
-                <ul class="bot-rules-list">
-                    <li><strong>Single Device License Lock:</strong> Each bot token binds to 1 registered phone/device at a time to prevent duplicate session flags.</li>
-                    <li><strong>Safe Heartbeat Frequencies:</strong> Heartbeat intervals are optimized between 200ms - 500ms to maintain gateway health without rate limit errors.</li>
-                    <li><strong>Automated Order Interception:</strong> Set minimum pay thresholds ($25+, $30+, $40+) to automatically decline low-paying orders.</li>
-                    <li><strong>Zero-Anti-Detection Guarantee:</strong> Automatic proxy rotation and device signature spoofing are enabled during active sessions.</li>
-                    <li><strong>Instant Activation:</strong> Upon verified payment transfer, the bot access link is generated &amp; sent to your email within 1-3 minutes.</li>
-                </ul>
             </div>
 
             <div class="form-group">
-                <label for="order-preference">Order Preference &amp; Target Filter</label>
-                <select id="order-preference" required="" __gcruniqueid="12">
+                <label>⚡ Connected Delivery Networks</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-card"><input type="checkbox" name="network" value="Walmart Spark" checked> Walmart Spark</label>
+                    <label class="checkbox-card"><input type="checkbox" name="network" value="Instacart"> Instacart</label>
+                    <label class="checkbox-card"><input type="checkbox" name="network" value="DoorDash"> DoorDash</label>
+                    <label class="checkbox-card"><input type="checkbox" name="network" value="Amazon Flex"> Amazon Flex</label>
+                    <label class="checkbox-card"><input type="checkbox" name="network" value="Uber Eats"> Uber Eats</label>
+                    <label class="checkbox-card"><input type="checkbox" name="network" value="Shipt"> Shipt Shopper</label>
+                    <label class="checkbox-card"><input type="checkbox" name="network" value="Roadie"> Roadie (UPS)</label>
+                    <label class="checkbox-card"><input type="checkbox" name="network" value="Bungii"> Bungii</label>
+                    <label class="checkbox-card"><input type="checkbox" name="network" value="GoShare"> GoShare Freight</label>
+                    <label class="checkbox-card"><input type="checkbox" name="network" value="Lyft"> Lyft Rideshare</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Custom / Regional Platforms (Optional)</label>
+                <input type="text" id="customApps" placeholder="Enter other apps (comma separated)">
+            </div>
+
+            <button type="button" class="btn" onclick="nextStep(3)">Proceed to Order Preferences →</button>
+        </div>
+
+        <!-- STEP 3: Order Configuration & Pricing -->
+        <div class="step-container" id="step3">
+            <h2 style="color: var(--primary); margin-bottom: 15px;">3. Order Configuration & Checkout</h2>
+            
+            <div class="form-group">
+                <label>📦 Interception Profile</label>
+                <select id="orderPreference" required>
+                    <option value="">Select order preference</option>
                     <option value="High-Value Priority Orders ($30+)">High-Value Priority Orders ($30+)</option>
                     <option value="Express Batch / Multi-Stop Orders">Express Batch / Multi-Stop Orders</option>
                     <option value="Instant Direct Delivery Blocks">Instant Direct Delivery Blocks</option>
-                    <option value="Grocery &amp; Large Retail Batches">Grocery &amp; Large Retail Batches</option>
+                    <option value="Grocery & Large Retail Batches">Grocery & Large Retail Batches</option>
                     <option value="All Available Orders (Full Automation)">All Available Orders (Full Automation)</option>
                 </select>
             </div>
 
-            <button type="submit" class="btn">Proceed to Payment Gateway</button>
-        </form>
+            <!-- PRICING BREAKDOWN -->
+            <div class="price-summary">
+                <div class="price-row">
+                    <span>HGT Spark Bot Activation & Setup:</span>
+                    <span><strong>$130.00</strong></span>
+                </div>
+                <div class="price-row">
+                    <span>Monthly License & Maintenance Renewal:</span>
+                    <span><strong>$90.00 / mo</strong></span>
+                </div>
+                <div class="price-row total">
+                    <span>Total Due Today:</span>
+                    <span>$130.00</span>
+                </div>
+            </div>
 
-        <!-- Section 5: Payment Gateway -->
-        <div id="payment-section">
-            <div class="section-title">💳 Step 5: Secure Payment Gateway</div>
-            
-            <div class="notice-banner">
-                Select your preferred payment method below to view instructions and destination address.
+            <div class="notice">
+                🔒 <strong>Mandatory Payment Rules:</strong> Transfer $130.00 using your selected payment endpoint below, then upload your receipt screenshot to complete license activation.
             </div>
 
             <div class="form-group">
-                <label for="payment-method">Payment Option</label>
-                <select id="payment-method" required="" __gcruniqueid="13">
-                    <option value="" disabled="" selected="">Select payment method</option>
-                    <option value="PayPal">PayPal</option>
-                    <option value="Wise">Wise (TransferWise)</option>
-                    <option value="Lead Bank">Lead Bank Wire / ACH</option>
-                    <option value="USDT (TRC20)">USDT (TRC-20)</option>
-                    <option value="Ethereum (ETH)">Ethereum (ETH)</option>
-                    <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
+                <label>Select Payment Method</label>
+                <select id="paymentMethod" required onchange="showPaymentDetails(this.value)">
+                    <option value="">Select payment option</option>
+                    <option value="Zelle">Zelle Payee Routing</option>
+                    <option value="PayPal">PayPal Direct Checkout</option>
+                    <option value="Bitcoin">Bitcoin (BTC) Crypto Wallet</option>
+                    <option value="Lead Bank Transfer">Lead Bank Transfer</option>
+                    <option value="USDT">USDT (TRC-20)</option>
+                    <option value="Ethereum">Ethereum (ETH)</option>
                 </select>
             </div>
 
-            <div class="timer-box" id="session-timer">Session Time: 35:00</div>
-
-            <div class="payment-card" id="payment-instruction-box">
-                Please select a payment method above to view payment instructions.
+            <!-- DYNAMIC PAYMENT DETAILS DISPLAY PANEL -->
+            <div id="paymentDetails" class="payment-info-box">
+                <!-- Dynamically filled via JavaScript -->
             </div>
 
-            <button type="button" class="btn" id="confirm-payment-btn">I Have Completed Payment</button>
-        </div>
-
-        <!-- Processing Loader -->
-        <div id="processing-section">
-            <div class="loader-container">
-                <div class="spinner"></div>
-                <div style="color: var(--text-muted); font-size: 0.9rem;" id="processing-status-text">Verifying transaction hash &amp; compiling bot access tokens...</div>
-            </div>
-        </div>
-
-        <!-- Final Confirmation -->
-        <div id="commit-section">
-            <div class="commit-box">
-                <h3>🚀 Multi-Bot License Active</h3>
-                <div class="arrival-badge">
-                    ⏱️ Estimated Link Arrival Time: <strong>Instant - 3 Minutes Max</strong>
+            <!-- PROOF OF PAYMENT UPLOAD -->
+            <div class="form-group">
+                <label>Upload Payment Proof / Confirmation Screenshot</label>
+                <div class="file-upload-wrapper">
+                    <span id="fileLabel">📁 Click or drag transaction receipt screenshot here</span>
+                    <input type="file" id="proofUpload" accept="image/*,.pdf" required onchange="updateFileName(this)">
                 </div>
-                <p id="commit-success-desc" style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin-bottom: 20px;">
-                    Payment confirmed. Your multi-bot integration access link has been generated and dispatched to your registered email address.
-                </p>
-                <button type="button" class="btn btn-commit" onclick="alert('Redirecting to your active HGT Client Portal...')">Access Client Dashboard</button>
             </div>
+
+            <button type="submit" class="btn">Submit & Complete Activation 🚀</button>
         </div>
+    </form>
+</div>
 
-        <div style="margin-top: 25px; text-align: center; border-top: 1px solid rgba(0,240,255,0.2); pt-3;">
-            <p style="font-size: 0.72rem; color: #6b7280;">Hacyber Global Tech © 2026. All rights reserved. Multi-Bot Integration System.</p>
-        </div>
-    </div>
+<script>
+    function nextStep(step) {
+        document.querySelectorAll('.step-container').forEach(el => el.classList.remove('active'));
+        document.getElementById('step' + step).classList.add('active');
+    }
 
-    <script>
-        const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwNVyba_xewRN-Er7UkyIWY89Oxr0Oq9w1Z7o2UpdNxRrzyEllJ21jt1JCthNIarFI/exec';
-        const TELEGRAM_BOT_TOKEN = '8676025127:AAGRYE5Pp6hBCKk6eQQL42aqObliIarQ41Q';
-        const TELEGRAM_CHAT_ID = '5642832782';
+    function updateFileName(input) {
+        const label = document.getElementById('fileLabel');
+        if (input.files && input.files[0]) {
+            label.innerText = '✅ Selected: ' + input.files[0].name;
+            label.style.color = '#00ff88';
+        }
+    }
 
-        let clientData = {
-            planName: 'Monthly Pass',
-            planPrice: 150
-        };
-        let countdownInterval;
+    function showPaymentDetails(method) {
+        const detailsBox = document.getElementById('paymentDetails');
+        let html = '';
 
-        function downloadCurrentPortalHTML() {
-            const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'hacyber_multi_bot_portal.html';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+        if (method === 'Zelle') {
+            html = `
+                <h4>💸 Zelle Payee Routing</h4>
+                <p><strong>Payee Name:</strong> Godfrey N Joshua</p>
+                <p><strong>Zelle Address:</strong></p>
+                <code>zelle@hacyberglobal.dpdns.org</code>
+            `;
+        } else if (method === 'PayPal') {
+            html = `
+                <h4>💳 PayPal Direct Checkout</h4>
+                <p><strong>Invoice Link:</strong></p>
+                <p><a href="https://paypal.me/hacyber-global/130" target="_blank" style="color: var(--primary); text-decoration: underline;">https://paypal.me/hacyber-global/130</a></p>
+            `;
+        } else if (method === 'Bitcoin') {
+            html = `
+                <h4>🪙 Bitcoin (BTC) Crypto Wallet</h4>
+                <p><strong>BTC Address:</strong></p>
+                <code>3QJ8yE7wU1fKAnF5sWpDHezB39P4Jp8YgD</code>
+            `;
+        } else if (method === 'Lead Bank Transfer') {
+            html = `
+                <h4>🏦 Lead Bank Transfer</h4>
+                <p>Direct bank routing details will be generated upon form submission or dispatched via support.</p>
+            `;
+        } else if (method === 'USDT' || method === 'Ethereum') {
+            html = `
+                <h4>🌐 Crypto Settlement (${method})</h4>
+                <p>Send equivalent valuation ($130.00 USD) to your assigned deposit wallet.</p>
+            `;
         }
 
-        function selectPricing(planName, price, cardEl) {
-            clientData.planName = planName;
-            clientData.planPrice = price;
-            document.querySelectorAll('.pricing-card').forEach(c => c.classList.remove('selected'));
-            if (cardEl) {
-                cardEl.classList.add('selected');
-            }
+        if (html) {
+            detailsBox.innerHTML = html;
+            detailsBox.style.display = 'block';
+        } else {
+            detailsBox.style.display = 'none';
         }
+    }
 
-        function toggleCheckbox(id) {
-            const cb = document.getElementById(id);
-            if (cb) {
-                cb.checked = !cb.checked;
-                if (id === 'net-other') {
-                    const otherGroup = document.getElementById('other-apps-group');
-                    otherGroup.style.display = cb.checked ? 'block' : 'none';
-                }
-            }
-        }
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        alert('Thank you! Your payment proof and integration details have been submitted to Hacyber Global Tech. License key and setup link will be dispatched to your email.');
+    }
+</script>
 
-        document.getElementById('select-all-btn').addEventListener('click', function() {
-            const checkboxes = document.querySelectorAll('.networks-container input[type="checkbox"]');
-            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
-            checkboxes.forEach(cb => { cb.checked = !allChecked; });
-            this.textContent = allChecked ? "Select All" : "Deselect All";
-        });
-
-        document.getElementById('lead-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            clientData.name = document.getElementById('fullname').value;
-            clientData.email = document.getElementById('email').value;
-            clientData.phone = document.getElementById('phone').value;
-            clientData.address = document.getElementById('address').value;
-            clientData.zipcode = document.getElementById('zipcode').value;
-
-            document.getElementById('lead-form').style.display = 'none';
-            document.getElementById('loading-section').style.display = 'block';
-
-            sendTelegramMessage(`🚀 [HGT PORTAL LEAD] Driver Registered:\nName: ${clientData.name}\nEmail: ${clientData.email}\nPhone: ${clientData.phone}\nZip: ${clientData.zipcode}`);
-            sendToGoogleScript({ type: 'driver_registered', ...clientData });
-
-            setTimeout(() => {
-                document.getElementById('loading-section').style.display = 'none';
-                document.getElementById('device-section').style.display = 'block';
-            }, 1800);
-        });
-
-        document.getElementById('device-section').addEventListener('submit', function(e) {
-            e.preventDefault();
-            clientData.device = document.getElementById('device-select').value;
-            document.getElementById('device-section').style.display = 'none';
-            document.getElementById('networks-section').style.display = 'block';
-        });
-
-        document.getElementById('networks-section').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const selected = [];
-            document.querySelectorAll('.networks-container input[type="checkbox"]:checked').forEach(cb => {
-                if (cb.id === 'net-other') {
-                    const custom = document.getElementById('other-apps-input').value.trim();
-                    selected.push(custom ? `Custom: ${custom}` : 'Other Apps');
-                } else {
-                    selected.push(cb.value);
-                }
-            });
-
-            if (selected.length === 0) {
-                alert('Please select at least one gig network to continue.');
-                return;
-            }
-
-            clientData.networks = selected.join(', ');
-            document.getElementById('networks-section').style.display = 'none';
-            document.getElementById('order-section').style.display = 'block';
-        });
-
-        document.getElementById('order-section').addEventListener('submit', function(e) {
-            e.preventDefault();
-            clientData.orderPreference = document.getElementById('order-preference').value;
-            
-            document.getElementById('order-section').style.display = 'none';
-            document.getElementById('payment-section').style.display = 'block';
-            startTimer(35 * 60);
-        });
-
-        document.getElementById('payment-method').addEventListener('change', function() {
-            clientData.paymentMethod = this.value;
-            const box = document.getElementById('payment-instruction-box');
-            
-            const totalToPay = clientData.planPrice || 150;
-
-            if (this.value === 'PayPal') {
-                box.innerHTML = `<strong>PayPal Transfer ($${totalToPay}):</strong><br>Send payment via PayPal to:<br><div class="wallet-address-box">hacyberglobaltech@gmail.com</div><span style="font-size:0.75rem; color:var(--text-muted);">Please select Friends & Family or attach payment receipt.</span>`;
-            } else if (this.value === 'Wise') {
-                box.innerHTML = `<strong>Wise Transfer ($${totalToPay}):</strong><br>Send payment via Wise to email:<br><div class="wallet-address-box">hacyberglobaltech@gmail.com</div><span style="font-size:0.75rem; color:var(--text-muted);">Fast multi-currency transfer enabled.</span>`;
-            } else if (this.value === 'Lead Bank') {
-                box.innerHTML = `<strong>Lead Bank Wire / ACH ($${totalToPay}):</strong><br>Account Name: Hacyber Global Tech<br>Bank: Lead Bank<br>Account & Routing numbers dispatched via live support.`;
-            } else if (this.value === 'USDT (TRC20)') {
-                box.innerHTML = `<strong>USDT (TRC-20) Wallet ($${totalToPay}):</strong><br>Send TRC20 USDT to address:<br><div class="wallet-address-box">TBdEnSsWQwZAMKiRe54fPi3d45ajyoXqj6</div>`;
-            } else if (this.value === 'Ethereum (ETH)') {
-                box.innerHTML = `<strong>Ethereum (ETH) Wallet ($${totalToPay}):</strong><br>Send ETH to address:<br><div class="wallet-address-box">0x575acfce162dc14fb2f6a7440c0da61c3d5f8a8f</div>`;
-            } else if (this.value === 'Bitcoin (BTC)') {
-                box.innerHTML = `<strong>Bitcoin (BTC) Wallet ($${totalToPay}):</strong><br>Send BTC to address:<br><div class="wallet-address-box">35e99VQwk2dYUiBJeKe2wnd73drgFFacPp</div>`;
-            }
-        });
-
-        document.getElementById('confirm-payment-btn').addEventListener('click', function() {
-            if (!clientData.paymentMethod) {
-                alert('Please select a payment method.');
-                return;
-            }
-            clearInterval(countdownInterval);
-            document.getElementById('payment-section').style.display = 'none';
-            document.getElementById('processing-section').style.display = 'block';
-
-            sendTelegramMessage(`💳 [PAYMENT COMMITTED] Plan: ${clientData.planName} ($${clientData.planPrice})\nClient: ${clientData.name} (${clientData.email})\nMethod: ${clientData.paymentMethod}\nNetworks: ${clientData.networks}\nDevice: ${clientData.device}`);
-            sendToGoogleScript({ type: 'payment_committed', ...clientData });
-
-            setTimeout(() => {
-                document.getElementById('processing-section').style.display = 'none';
-                document.getElementById('commit-section').style.display = 'block';
-                document.getElementById('commit-success-desc').innerHTML = `Payment confirmed for <strong>${clientData.planName} ($${clientData.planPrice})</strong> covering <strong>${clientData.networks}</strong> on <strong>${clientData.device}</strong>.<br><br>Your active multi-bot access link has been generated and sent to <strong>${clientData.email}</strong> within 1-3 minutes.`;
-            }, 3000);
-        });
-
-        function startTimer(duration) {
-            let timer = duration;
-            const display = document.getElementById('session-timer');
-            countdownInterval = setInterval(() => {
-                let minutes = Math.floor(timer / 60);
-                let seconds = timer % 60;
-                display.textContent = `Session Time Remaining: ${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                if (--timer < 0) {
-                    clearInterval(countdownInterval);
-                    display.textContent = 'Session Expired - Refresh Page';
-                }
-            }, 1000);
-        }
-
-        function sendTelegramMessage(text) {
-            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=` + encodeURIComponent(text);
-            fetch(url).catch(err => console.error(err));
-        }
-
-        function sendToGoogleScript(data) {
-            fetch(WEBHOOK_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            }).catch(err => console.error(err));
-        }
-    </script>
-
-
-</body></html>
+</body>
+</html>
