@@ -1,0 +1,18 @@
+Copyright © 2026 Hacyber Global Tech.
+All Rights Reserved.
+
+This software and associated documentation files (the "Software") are the confidential 
+and proprietary information of Hacyber Global Tech. Unauthorized copying, distribution, 
+modification, or use of this Software or any portion thereof is strictly prohibited.
+
+The Software is provided "AS IS" without warranty of any kind, express or implied, 
+including but not limited to the warranties of merchantability, fitness for a particular 
+purpose, and noninfringement. In no event shall Hacyber Global Tech be liable for any 
+claim, damages, or other liability, whether in an action of contract, tort, or otherwise, 
+arising from, out of, or in connection with the Software or the use or other dealings 
+in the Software.
+
+Permission to use, copy, or modify this Software may be granted at the sole discretion 
+of Hacyber Global Tech upon written request.
+
+For inquiries regarding licensing or usage rights, please contact Hacyber Global Tech.
