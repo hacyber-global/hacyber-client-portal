@@ -2,7 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"    <title>Hacyber Global Tech | Enterprise Client Onboarding & Secure Settlement Portal</title>
+    <style>
+        :root {
+            --bg-color: #060913;
+            --card-bg: rgba(17, 24, 39, 0.65);
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border: rgba(255, 255, 255, 0.08);
+            --success: #10b981;
     <title>Hacyber Global Tech | HGT Spark Bot Integration Portal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,12 +38,17 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.1) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 24px;
             padding: 20px;
             background-image: 
                 radial-gradient(circle at 15% 15%, rgba(112, 0, 255, 0.15) 0%, transparent 40%),
@@ -42,6 +57,22 @@
 
         .container {
             width: 100%;
+            max-width: 620px;
+            background-color: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            font-size: 1.65rem;
+            margin-bottom: 6px;
+            color: var(--text-main);
+            text-align: center;
+            letter-spacing: -0.5px;
             max-width: 850px;
             background: var(--card-bg);
             border: 1px solid var(--border-glow);
@@ -113,6 +144,20 @@
         .feature-card p {
             font-size: 0.88rem;
             color: var(--text-muted);
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             line-height: 1.35;
         }
 
@@ -147,6 +192,12 @@
         input[type="tel"],
         select {
             width: 100%;
+            padding: 12px 14px;
+            background-color: rgba(3, 7, 18, 0.75);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-size: 0.95rem;
             padding: 12px 16px;
             background: rgba(8, 11, 16, 0.8);
             border: 1px solid rgba(0, 240, 255, 0.3);
@@ -158,6 +209,115 @@
 
         input:focus, select:focus {
             outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 85px;
+        }
+
+        button.submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
+        }
+
+        button.submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 22px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Modal Overlay for Payment Channel Popup */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 580px;
+            background-color: rgba(17, 24, 39, 0.95);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .payment-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .pay-card {
+            background: rgba(11, 15, 25, 0.75);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pay-card:hover {
+            border-color: var(--accent);
+            background: rgba(17, 24, 39, 0.9);
+        }
+
+        .pay-card.selected {
+            border-color: var(--success);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+        }
+
+        .pay-card.lead-bank { border-left: 4px solid #10b981; }
+        .pay-card.usdt { border-left: 4px solid #ef4444; }
+        .pay-card.btc { border-left: 4px solid #f59e0b; }
+        .pay-card.eth { border-left: 4px solid #6366f1; }
+        .pay-card.paypal { border-left: 4px solid #3b82f6; }
+
+        .pay-header {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pay-details {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .pay-details span {
+            color: var(--text-main);
+            font-family: monospace;
             border-color: var(--primary);
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
         }
@@ -252,6 +412,44 @@
             border-radius: 6px;
             display: flex;
             align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .copy-row code {
+            flex: 1;
+            font-size: 0.7rem;
+            word-break: break-all;
+            color: var(--text-main);
+            background: rgba(3, 7, 18, 0.85);
+            padding: 6px 8px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .copy-btn {
+            background: rgba(31, 41, 55, 0.75);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .receipt-section {
+            margin-top: 20px;
+            border-top: 1px solid var(--border);
+            padding-top: 16px;
+        }
+
+        .footer-note {
+            margin-top: 28px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
             justify-content: space-between;
             gap: 10px;
             margin-top: 8px;
@@ -360,6 +558,12 @@
 </head>
 <body>
 
+    <div class="container">
+        <h2>Hacyber Global Tech</h2>
+        <p class="subtitle">Enterprise Client Onboarding & Secure Settlement Portal</p>
+        
+        <div class="section-title">💼 Professional Lead & Project Intake</div>
+        <form id="leadForm">
 <div class="container">
     <div class="header">
         <h1>Hacyber Global Tech</h1>
@@ -460,6 +664,12 @@
             <h2 style="color: var(--primary); margin-bottom: 15px;">3. Order Configuration & Checkout</h2>
             
             <div class="form-group">
+                <label for="detailsInput">Project Scope / Requirements</label>
+                <textarea id="detailsInput" placeholder="Describe your project requirements or goals..." required></textarea>
+            </div>
+
+            <button type="button" id="proceedBtn" class="submit-btn">Proceed to Payment Selection</button>
+        </form>
                 <label>📦 Interception Profile</label>
                 <select id="orderPreference" required>
                     <option value="">Select order preference</option>
@@ -617,5 +827,133 @@
     }
 </script>
 
+    <!-- Payment Channels Modal Popup -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-content">
+            <h2>Select Settlement Channel</h2>
+            <p class="subtitle">Choose your preferred payment method to receive details and submit proof.</p>
+            
+            <div class="payment-grid">
+                <div class="pay-card lead-bank" onclick="selectChannel('Lead Bank (ACH/Wire)', this)">
+                    <div class="pay-header" style="color: #10b981;">LEAD BANK (ACH / Wire) <span>Select</span></div>
+                    <div class="pay-details">
+                        • Account Name: <span>Godfrey N Joshua</span><br>
+                        • Account Number: <span>217061367039</span><br>
+                        • Routing Number: <span>101019644</span>
+                    </div>
+                </div>
+
+                <div class="pay-card usdt" onclick="selectChannel('Tether USDT (TRC-20)', this)">
+                    <div class="pay-header" style="color: #ef4444;">TETHER USDT (TRC-20) <span>Select</span></div>
+                    <div class="pay-details">
+                        • Network: <span>Tron (TRC-20)</span><br>
+                        • Address: <span>TBdEnSsWQwZAMKiRe54fPi3d45ajyoXqj6</span>
+                    </div>
+                </div>
+
+                <div class="pay-card btc" onclick="selectChannel('Bitcoin (BTC)', this)">
+                    <div class="pay-header" style="color: #f59e0b;">BITCOIN (BTC) <span>Select</span></div>
+                    <div class="pay-details">
+                        • Network: <span>Bitcoin Blockchain</span><br>
+                        • Address: <span>35e99VQwk2dYUiBJeKe2wnd73drgFFacPp</span>
+                    </div>
+                </div>
+
+                <div class="pay-card eth" onclick="selectChannel('Ethereum (ETH)', this)">
+                    <div class="pay-header" style="color: #6366f1;">ETHEREUM (ETH) <span>Select</span></div>
+                    <div class="pay-details">
+                        • Network: <span>Ethereum (ERC-20)</span><br>
+                        • Address: <span>0x575acfce162dc14fb2f6a7440c0da61c3d5f8a8f</span>
+                    </div>
+                </div>
+
+                <div class="pay-card paypal" onclick="selectChannel('PayPal', this)">
+                    <div class="pay-header" style="color: #3b82f6;">PAYPAL DIRECT CHECKOUT <span>Select</span></div>
+                    <div class="pay-details">
+                        • Link: <span>paypal.me/hacyber-global/130</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="receipt-section">
+                <div class="form-group">
+                    <label for="receiptInput">Payment Receipt / Transaction Hash (Required)</label>
+                    <input type="text" id="receiptInput" placeholder="Paste transaction hash, receipt ID, or notes..." required>
+                </div>
+                <button type="button" id="finalSubmitBtn" class="submit-btn" style="background: linear-gradient(135deg, #10b981, #059669);" onclick="submitFinalLead()" disabled>Select Payment Method First</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedPaymentMethod = '';
+
+        document.getElementById('proceedBtn').addEventListener('click', () => {
+            const name = document.getElementById('nameInput').value.trim();
+            const email = document.getElementById('emailInput').value.trim();
+            const details = document.getElementById('detailsInput').value.trim();
+
+            if (!name || !email || !details) {
+                alert('Please complete all lead input fields before proceeding.');
+                return;
+            }
+
+            document.getElementById('paymentModal').style.display = 'flex';
+        });
+
+        function selectChannel(methodName, element) {
+            document.querySelectorAll('.pay-card').forEach(card => card.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedPaymentMethod = methodName;
+
+            const finalBtn = document.getElementById('finalSubmitBtn');
+            finalBtn.disabled = false;
+            finalBtn.textContent = `Submit Lead & Receipt (${methodName})`;
+        }
+
+        async function submitFinalLead() {
+            const receipt = document.getElementById('receiptInput').value.trim();
+            if (!receipt) {
+                alert('Please provide your payment receipt or transaction reference before completing submission.');
+                return;
+            }
+
+            const finalBtn = document.getElementById('finalSubmitBtn');
+            finalBtn.textContent = 'Transmitting to Telegram...';
+            finalBtn.disabled = true;
+
+            const leadData = {
+                name: document.getElementById('nameInput').value,
+                email: document.getElementById('emailInput').value,
+                details: `Project Scope: ${document.getElementById('detailsInput').value} | Selected Payment Method: ${selectedPaymentMethod} | Receipt/Hash: ${receipt}`
+            };
+
+            try {
+                const response = await fetch('https://script.google.com/macros/s/AKfycby83r6izzGv9ZNYbTVkUFldCOWns_ourFktMGi2yxQtOZUjMvPpo0z_TJXRsWZmtz2V7w/exec', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(leadData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Lead, selected payment channel, and receipt successfully dispatched to Telegram!');
+                    document.getElementById('leadForm').reset();
+                    document.getElementById('paymentModal').style.display = 'none';
+                    location.reload();
+                } else {
+                    alert('Submission failed: ' + (result.error || 'Unknown error'));
+                    finalBtn.textContent = `Submit Lead & Receipt (${selectedPaymentMethod})`;
+                    finalBtn.disabled = false;
+                }
+            } catch (err) {
+                console.error('Network error:', err);
+                alert('Connection error occurred while submitting.');
+                finalBtn.textContent = `Submit Lead & Receipt (${selectedPaymentMethod})`;
+                finalBtn.disabled = false;
+            }
+        }
+    </script>
 </body>
 </html>

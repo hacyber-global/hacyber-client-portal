@@ -1,4 +1,4 @@
-# Hacyber Global Tech | Client Control & Payment System
+# HacyberGlobalTech | Client Control & Payment System.
 
 Official secure intake, client control, and payment gateway portal for
 **Hacyber Global Tech**, engineered to process client project onboarding and route secure payments directly into administrative channels.
